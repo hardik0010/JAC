@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&family=Bitter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border-gray dark:border-dark-border;
+  }
+  
+  body {
+    @apply bg-primary-white text-text-dark font-sans transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-dark-bg text-primary-white;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-orange text-primary-white font-semibold px-6 py-3 rounded-lg hover:bg-[#e6a300] hover:border-[#e6a300] transition-all duration-300 shadow-medium hover:shadow-strong transform hover:-translate-y-1 border border-primary-orange;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border border-border-gray text-primary-dark font-semibold px-6 py-3 rounded-lg hover:bg-light-gray hover:border-primary-orange transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply bg-primary-dark text-primary-white border border-primary-dark font-semibold px-6 py-3 rounded-lg hover:bg-[#2a2b2b] transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-white {
+    @apply bg-primary-white text-primary-dark border border-primary-white font-semibold px-6 py-3 rounded-lg hover:bg-light-gray transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-outline-white {
+    @apply bg-transparent text-primary-white border border-primary-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-white hover:text-primary-orange transition-all duration-300;
+  }
+  
+  .card {
+    @apply bg-primary-white dark:bg-dark-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 border border-gray-100 dark:border-dark-border;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-orange to-primary-orange/80 bg-clip-text text-transparent;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(251, 181, 0, 0.1) 0%, rgba(21, 22, 22, 0.05) 100%);
+  }
+  
+  .dark .hero-gradient {
+    background: linear-gradient(135deg, rgba(251, 181, 0, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(233, 236, 239, 0.5);
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #FBB500;
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #e6a300;
+  }
+}
