@@ -126,25 +126,7 @@ const Gallery = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary-orange/10 to-primary-black/5">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-              Project <span className="gradient-text">Gallery</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Explore our visual portfolio showcasing construction sites, completed projects, 
-              and work-in-progress shots that demonstrate our expertise and quality.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Section */}  
 
       {/* Filter Section */}
       <section className="section-padding bg-gray-50 dark:bg-dark-bg">
@@ -260,32 +242,6 @@ const Gallery = () => {
       )}
 
       {/* CTA Section */}
-      <section className="section-padding bg-primary-black text-primary-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your construction needs and create something extraordinary together. 
-              Our team is ready to bring your vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="btn-primary">
-                Get Free Quote
-              </a>
-              <a href="tel:+1234567890" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
-                Call Now
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }

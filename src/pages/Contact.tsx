@@ -101,24 +101,6 @@ const Contact = () => {
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary-orange/10 to-primary-black/5">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-              Get in <span className="gradient-text">Touch</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Ready to start your construction project? Contact us today for a free consultation 
-              and let's discuss how we can bring your vision to life.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Contact Form & Info */}
       <section className="section-padding">
@@ -351,16 +333,18 @@ const Contact = () => {
             viewport={{ once: true }}
             className="card overflow-hidden"
           >
-            <div className="h-96 bg-gray-200 dark:bg-dark-border flex items-center justify-center">
-              <div className="text-center">
-                <Building2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500 dark:text-gray-400">
-                  Interactive map will be embedded here
-                </p>
-                <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">
-                  Google Maps integration
-                </p>
-              </div>
+            <div className="h-96 w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.113949689342!2d72.541278!3d23.113949689342064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDA2JzUwLjIiTiA3MsKwMzInMjQuNiJF!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Jayambe Construction Office Location"
+                className="rounded-lg"
+              ></iframe>
             </div>
           </motion.div>
         </div>
@@ -453,32 +437,6 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-primary-black text-primary-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your construction needs and create something extraordinary together. 
-              Our team is ready to bring your vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+1234567890" className="btn-primary">
-                Call Now
-              </a>
-              <a href="mailto:info@jayambeconstruction.com" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
-                Send Email
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }

@@ -110,20 +110,6 @@ const Projects = () => {
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary-orange/10 to-primary-black/5">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-              Our <span className="gradient-text">Projects</span>
-            </h1>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Filter Section */}
       <section className="section-padding bg-gray-50 dark:bg-dark-bg">
@@ -165,7 +151,7 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card overflow-hidden group"
+                className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border shadow-lg overflow-hidden group"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img

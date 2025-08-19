@@ -148,7 +148,7 @@ const Services = () => {
       {/* Services Grid */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -156,7 +156,7 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card overflow-hidden group"
+                className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border shadow-lg overflow-hidden group"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
