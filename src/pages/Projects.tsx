@@ -6,8 +6,7 @@ import {
   Wrench, 
   MapPin, 
   Calendar,
-  ArrowRight,
-  Filter
+  ArrowRight
 } from 'lucide-react'
 
 const Projects = () => {

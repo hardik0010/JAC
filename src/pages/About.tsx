@@ -5,10 +5,6 @@ import {
   Eye, 
   Award, 
   Users, 
-  Calendar,
-  MapPin,
-  Phone,
-  Mail,
   Linkedin,
   Twitter
 } from 'lucide-react'

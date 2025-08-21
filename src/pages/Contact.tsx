@@ -7,7 +7,6 @@ import {
   Clock, 
   Send,
   CheckCircle,
-  Building2
 } from 'lucide-react'
 
 const Contact = () => {

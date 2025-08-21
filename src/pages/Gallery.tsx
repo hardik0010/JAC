@@ -5,7 +5,6 @@ import {
   Home, 
   Wrench, 
   Play,
-  Filter,
   Download,
   Share2
 } from 'lucide-react'

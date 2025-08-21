@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Building2, Home as HomeIcon, Wrench, Users, Award, Phone, Mail, Check, FileText } from 'lucide-react'
+import { ArrowRight, Building2, Home as HomeIcon, Wrench, Users, Award, Phone, Check, FileText } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 
 const Home = () => {
