@@ -75,7 +75,7 @@ const Home = () => {
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight">
               Building Dreams,
-              <span className="block text-primary-orange">Creating Landmarks</span>
+              <span className="block text-accent-gray">Creating Landmarks</span>
             </h1>
             <p className={`text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-gray-100' : 'text-gray-200'}`}>
               Professional construction services delivering excellence in every project. 
@@ -118,10 +118,10 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-primary-orange flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-accent-gray flex items-center justify-center">
                   <stat.icon className="w-6 h-6 text-primary-white" />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-primary-orange mb-2 font-display">
+                <div className="text-4xl lg:text-5xl font-bold text-accent-gray mb-2 font-display">
                   {stat.number}
                 </div>
                 <div className={`font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-300'}`}>
@@ -154,7 +154,7 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className={`text-4xl md:text-5xl font-display font-bold mb-4 ${theme === 'dark' ? 'text-primary-white' : 'text-primary-dark'}`}>
-              Our <span className="text-primary-orange">Services</span>
+              Our <span className="text-accent-gray">Services</span>
             </h2>
             <p className={`text-lg max-w-3xl mx-auto leading-relaxed ${theme === 'dark' ? 'text-primary-white/90' : 'text-text-light'}`}>
               Comprehensive construction solutions tailored to meet your specific needs. 
@@ -184,12 +184,12 @@ const Home = () => {
                   
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className={`absolute bottom-4 right-4 ${theme === 'dark' ? 'bg-dark-card/90' : 'bg-white/90'} text-primary-orange w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-200 group-hover:scale-110`}>
+                  <div className={`absolute bottom-4 right-4 ${theme === 'dark' ? 'bg-dark-card/90' : 'bg-white/90'} text-accent-gray w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-200 group-hover:scale-110`}>
                     <service.icon className="w-6 h-6" />
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className={`text-xl font-bold mb-3 font-display ${theme === 'dark' ? 'text-primary-white' : 'text-primary-dark'} group-hover:text-primary-orange transition-colors duration-200`}>
+                  <h3 className={`text-xl font-bold mb-3 font-display ${theme === 'dark' ? 'text-primary-white' : 'text-primary-dark'} group-hover:text-accent-gray transition-colors duration-200`}>
                     {service.title}
                   </h3>
                   <p className={`text-sm leading-relaxed mb-4 ${theme === 'dark' ? 'text-primary-white/80' : 'text-text-light'}`}>
@@ -198,7 +198,7 @@ const Home = () => {
                   <ul className="space-y-2 mb-6">
                     {service.features.slice(0, 2).map((feature, idx) => (
                       <li key={idx} className={`flex items-center text-sm ${theme === 'dark' ? 'text-primary-white/90' : 'text-text-dark'}`}>
-                        <Check className="w-3 h-3 text-primary-orange mr-2 flex-shrink-0" />
+                        <Check className="w-3 h-3 text-accent-gray mr-2 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -207,8 +207,8 @@ const Home = () => {
                     to="/services" 
                     className={`inline-flex items-center font-semibold text-sm hover:gap-3 transition-all duration-200 relative z-10 ${
                       theme === 'dark' 
-                        ? 'text-primary-orange group-hover:text-primary-orange' 
-                        : 'text-primary-orange group-hover:text-primary-dark'
+                        ? 'text-accent-gray group-hover:text-accent-gray' 
+                        : 'text-accent-gray group-hover:text-primary-dark'
                     }`}
                   >
                     Learn More <ArrowRight className="ml-2 w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1" />
@@ -221,7 +221,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className={`py-20 relative ${theme === 'dark' ? 'bg-primary-orange' : 'bg-primary-orange'} text-primary-white`}>
+      <section className={`py-20 relative ${theme === 'dark' ? 'bg-accent-gray' : 'bg-accent-gray'} text-primary-white`}>
         {/* Background Pattern */}
         <div className={`absolute inset-0 ${theme === 'dark' ? 'opacity-15' : 'opacity-10'}`}>
           <div 
@@ -247,11 +247,11 @@ const Home = () => {
               Our team is ready to help you create something extraordinary.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className={`inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-300 ${theme === 'dark' ? 'bg-white text-primary-orange hover:bg-gray-100' : 'bg-white text-primary-orange hover:bg-gray-100'}`}>
+              <Link to="/contact" className={`inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-300 ${theme === 'dark' ? 'bg-white text-accent-gray hover:bg-gray-100' : 'bg-white text-accent-gray hover:bg-gray-100'}`}>
                 <FileText className="mr-2 w-5 h-5" />
                 Get Free Quote
               </Link>
-              <a href="tel:+1234567890" className={`inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg border-2 transition-all duration-300 ${theme === 'dark' ? 'border-white text-white hover:bg-white hover:text-primary-orange' : 'border-white text-white hover:bg-white hover:text-primary-orange'}`}>
+              <a href="tel:+1234567890" className={`inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg border-2 transition-all duration-300 ${theme === 'dark' ? 'border-white text-white hover:bg-white hover:text-accent-gray' : 'border-white text-white hover:bg-white hover:text-accent-gray'}`}>
                 <Phone className="mr-2 w-5 h-5" />
                 Call Now
               </a>

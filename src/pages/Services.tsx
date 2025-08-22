@@ -15,88 +15,88 @@ import {
 const Services = () => {
   const services = [
     {
-      icon: Home,
-      title: 'Residential Construction',
-      description: 'Custom homes and residential projects built to your exact specifications with premium quality materials and expert craftsmanship.',
+      icon: Building2,
+      title: 'High-Rise Construction',
+      description: 'Specialized expertise in constructing buildings ranging from 14 to 22 floors with precision engineering and quality craftsmanship.',
       features: [
-        'Custom home design and construction',
-        'Multi-family residential projects',
-        'Luxury homes and estates',
-        'Sustainable and eco-friendly building',
-        'Complete interior finishing',
-        'Landscaping and outdoor spaces'
+        '14-22 floor high-rise buildings',
+        'Structural engineering excellence',
+        'Quality control systems',
+        'Safety compliance standards',
+        'Modern construction techniques',
+        'Timely project delivery'
       ],
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      icon: Building2,
-      title: 'Commercial Projects',
-      description: 'Modern commercial buildings, office spaces, and retail facilities designed for functionality, aesthetics, and long-term value.',
+      icon: Home,
+      title: 'Residential Projects',
+      description: 'Comprehensive residential construction services from individual homes to large-scale apartment complexes and housing societies.',
       features: [
-        'Office buildings and corporate headquarters',
-        'Retail spaces and shopping centers',
-        'Industrial facilities and warehouses',
-        'Healthcare and educational buildings',
-        'Restaurants and hospitality venues',
-        'Mixed-use developments'
+        'Individual homes and villas',
+        'Apartment complexes',
+        'Housing societies',
+        'Luxury residences',
+        'Affordable housing',
+        'Custom home design'
       ],
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
       icon: Wrench,
-      title: 'Renovation & Interiors',
-      description: 'Transform your existing space with our comprehensive renovation and interior design services that maximize functionality and style.',
+      title: 'Turn-Key Projects',
+      description: 'Complete project delivery from concept to completion, taking full responsibility for delivering finished projects within defined timeframes.',
       features: [
-        'Complete home renovations',
-        'Kitchen and bathroom remodeling',
-        'Interior design and decoration',
-        'Structural modifications',
-        'Energy efficiency upgrades',
-        'Historical restoration'
+        'End-to-end project management',
+        'Design and planning',
+        'Construction execution',
+        'Quality assurance',
+        'Timeline management',
+        'Handover and documentation'
       ],
       image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
       icon: Users,
-      title: 'Project Management',
-      description: 'Comprehensive project management services ensuring your construction project is completed on time, within budget, and to the highest standards.',
+      title: 'RCC & Masonry Works',
+      description: 'Expert reinforced concrete construction and masonry work including plastering, ensuring structural integrity and aesthetic finish.',
       features: [
-        'Full project lifecycle management',
-        'Budget planning and cost control',
-        'Timeline management and scheduling',
-        'Quality assurance and control',
-        'Stakeholder communication',
-        'Risk management and mitigation'
+        'Reinforced concrete structures',
+        'Masonry construction',
+        'Plastering and finishing',
+        'Structural reinforcement',
+        'Quality material usage',
+        'Skilled craftsmanship'
       ],
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+      image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
       icon: HardHat,
-      title: 'Construction Consulting',
-      description: 'Expert consulting services to help you make informed decisions about your construction projects and investments.',
+      title: 'All Labor Contracts',
+      description: 'Comprehensive labor services for construction projects, providing skilled workforce for various construction phases.',
       features: [
-        'Feasibility studies and site analysis',
-        'Construction cost estimation',
-        'Building code compliance review',
-        'Sustainability and green building consulting',
-        'Construction technology recommendations',
-        'Project optimization strategies'
+        'Skilled construction workers',
+        'Project-specific teams',
+        'Quality workmanship',
+        'Timely completion',
+        'Cost-effective solutions',
+        'Flexible contract terms'
       ],
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     },
     {
       icon: Ruler,
-      title: 'Design & Planning',
-      description: 'Comprehensive architectural design and planning services to bring your vision to life with innovative and practical solutions.',
+      title: 'Project Management',
+      description: 'Professional project management services ensuring your construction project is completed on time, within budget, and to the highest standards.',
       features: [
-        'Architectural design and planning',
-        '3D modeling and visualization',
-        'Building permit assistance',
-        'Site planning and development',
-        'Sustainable design integration',
-        'Construction documentation'
+        'Project planning and scheduling',
+        'Budget management',
+        'Quality control',
+        'Risk management',
+        'Stakeholder coordination',
+        'Progress monitoring'
       ],
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 
@@ -104,29 +104,29 @@ const Services = () => {
     {
       icon: Shield,
       title: 'Quality Assurance',
-      description: 'Rigorous quality control processes ensure every project meets the highest standards.'
+      description: 'Rigorous quality control processes ensure every project meets the highest standards of construction excellence.'
     },
     {
       icon: Clock,
       title: 'Timely Delivery',
-      description: 'We pride ourselves on completing projects on schedule without compromising quality.'
+      description: 'We pride ourselves on completing projects on schedule without compromising quality or safety standards.'
     },
     {
       icon: Users,
       title: 'Expert Team',
-      description: 'Our experienced professionals bring decades of combined construction expertise.'
+      description: 'Our experienced professionals bring 15+ years of combined expertise in high-rise construction.'
     },
     {
       icon: CheckCircle,
       title: 'Client Satisfaction',
-      description: '100% client satisfaction rate with long-term relationships built on trust.'
+      description: '100% client satisfaction rate with long-term relationships built on trust and quality delivery.'
     }
   ]
 
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary-orange/10 to-primary-black/5">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-accent-gray/10 to-primary-black/5">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -138,7 +138,7 @@ const Services = () => {
               Our <span className="gradient-text">Services</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Comprehensive construction solutions tailored to meet your specific needs. 
+              Specialized construction services in high-rise buildings, turn-key projects, and RCC & masonry works. 
               From concept to completion, we deliver excellence in every project.
             </p>
           </motion.div>
@@ -166,8 +166,8 @@ const Services = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 bg-primary-orange rounded-lg flex items-center justify-center">
-                      <service.icon className="w-6 h-6 text-primary-black" />
+                    <div className="w-12 h-12 bg-accent-gray rounded-lg flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-primary-white" />
                     </div>
                   </div>
                 </div>
@@ -181,12 +181,12 @@ const Services = () => {
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-primary-orange mr-3 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-accent-gray mr-3 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <button className="inline-flex items-center text-primary-orange font-semibold hover:text-primary-orange/80 transition-colors duration-300">
+                  <button className="inline-flex items-center text-accent-gray font-semibold hover:text-accent-gray/80 transition-colors duration-300">
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </button>
@@ -211,7 +211,7 @@ const Services = () => {
               Why <span className="gradient-text">Choose Us</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We combine decades of experience with innovative construction techniques 
+              We combine 15+ years of experience with innovative construction techniques 
               to deliver exceptional results that exceed expectations.
             </p>
           </motion.div>
@@ -226,8 +226,8 @@ const Services = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-primary-orange/20 flex items-center justify-center">
-                  <item.icon className="w-8 h-8 text-primary-orange" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
+                  <item.icon className="w-8 h-8 text-accent-gray" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
                   {item.title}
@@ -261,7 +261,7 @@ const Services = () => {
               <a href="/contact" className="btn-primary">
                 Get Free Quote
               </a>
-              <a href="tel:+1234567890" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
+              <a href="tel:+919898989898" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
                 Call Now
               </a>
             </div>

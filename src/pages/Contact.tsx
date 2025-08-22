@@ -1,72 +1,35 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
-  MapPin, 
   Phone, 
   Mail, 
+  MapPin, 
   Clock, 
   Send,
-  CheckCircle,
+  CheckCircle
 } from 'lucide-react'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      })
-    }, 3000)
-  }
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const contactInfo = [
     {
       icon: MapPin,
       title: 'Office Address',
       details: [
-        '123 Construction Avenue',
-        'Building District',
-        'City, State 12345'
+        '1304, 13TH FLOOR GANESH GLORY',
+        'NEAR BSNL OFFICE, JAGATPUR-CHENPUR ROAD',
+        'S.G.HIGHWAY, JAGATPUR',
+        'AHMEDABAD-382481, GUJARAT'
       ]
     },
     {
       icon: Phone,
-      title: 'Phone Numbers',
+      title: 'Phone Number',
       details: [
-        '+1 (234) 567-8900',
-        '+1 (234) 567-8901'
+        '+91 98989 89898',
+        'Available Mon-Sat: 9:00 AM - 7:00 PM'
       ]
     },
     {
@@ -74,32 +37,55 @@ const Contact = () => {
       title: 'Email Address',
       details: [
         'info@jayambeconstruction.com',
-        'projects@jayambeconstruction.com'
+        'We respond within 24 hours'
       ]
     },
     {
       icon: Clock,
       title: 'Business Hours',
       details: [
-        'Monday - Friday: 8:00 AM - 6:00 PM',
-        'Saturday: 9:00 AM - 4:00 PM',
-        'Sunday: Closed'
+        'Monday - Saturday: 9:00 AM - 7:00 PM',
+        'Sunday: Closed',
+        'Emergency calls: 24/7'
       ]
     }
   ]
 
-  const services = [
-    'Residential Construction',
-    'Commercial Projects',
-    'Renovation & Interiors',
-    'Project Management',
-    'Construction Consulting',
-    'Design & Planning'
-  ]
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setSubmitSuccess(true)
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitSuccess(false), 5000)
+    }, 2000)
+  }
 
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
+      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-accent-gray/10 to-primary-black/5">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+              Get in <span className="gradient-text">Touch</span>
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              Ready to start your construction project? Contact us today for a free consultation 
+              and let's discuss how we can bring your vision to life.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Contact Form & Info */}
       <section className="section-padding">
@@ -116,16 +102,14 @@ const Contact = () => {
                 Send Us a <span className="gradient-text">Message</span>
               </h2>
               
-              {isSubmitted ? (
+              {submitSuccess ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="card p-8 text-center"
                 >
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 text-primary-black dark:text-primary-white">
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-primary-black dark:text-primary-white mb-2">
                     Message Sent Successfully!
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -136,89 +120,88 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Full Name *
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        First Name *
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
+                        id="firstName"
+                        name="firstName"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent bg-white dark:bg-dark-card text-primary-black dark:text-primary-white"
-                        placeholder="Enter your full name"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Email Address *
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Last Name *
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
+                        type="text"
+                        id="lastName"
+                        name="lastName"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent bg-white dark:bg-dark-card text-primary-black dark:text-primary-white"
-                        placeholder="Enter your email"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
                       />
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent bg-white dark:bg-dark-card text-primary-black dark:text-primary-white"
-                        placeholder="Enter your phone number"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Subject *
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent bg-white dark:bg-dark-card text-primary-black dark:text-primary-white"
-                      >
-                        <option value="">Select a subject</option>
-                        {services.map((service) => (
-                          <option key={service} value={service}>{service}</option>
-                        ))}
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Quote Request">Quote Request</option>
-                        <option value="Project Consultation">Project Consultation</option>
-                      </select>
                     </div>
                   </div>
                   
                   <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Project Type *
+                    </label>
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                    >
+                      <option value="">Select Project Type</option>
+                      <option value="residential">Residential Construction</option>
+                      <option value="commercial">Commercial Projects</option>
+                      <option value="turnkey">Turn-key Projects</option>
+                      <option value="rcc-masonry">RCC & Masonry Works</option>
+                      <option value="labor">All Labor Contracts</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Message *
+                      Project Details *
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
+                      rows={5}
                       required
-                      rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent bg-white dark:bg-dark-card text-primary-black dark:text-primary-white resize-none"
-                      placeholder="Tell us about your project..."
-                    />
+                      placeholder="Please describe your project requirements, timeline, and any specific details..."
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white resize-none"
+                    ></textarea>
                   </div>
                   
                   <button
@@ -264,8 +247,8 @@ const Contact = () => {
                     className="card p-6"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <info.icon className="w-6 h-6 text-primary-orange" />
+                      <div className="w-12 h-12 bg-accent-gray/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <info.icon className="w-6 h-6 text-accent-gray" />
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-primary-black dark:text-primary-white">
@@ -288,18 +271,18 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="card p-6 mt-8 bg-primary-orange text-primary-black"
+                className="card p-6 mt-8 bg-accent-gray text-primary-black"
               >
                 <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
                 <p className="mb-4">
                   For urgent inquiries or emergency situations, please call us directly.
                 </p>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919898989898"
                   className="inline-flex items-center font-semibold hover:underline"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  +1 (234) 567-8900
+                  +91 98989 89898
                 </a>
               </motion.div>
             </motion.div>
@@ -441,3 +424,4 @@ const Contact = () => {
 }
 
 export default Contact
+

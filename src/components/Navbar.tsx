@@ -38,14 +38,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-primary-orange text-primary-white w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+            <div className="bg-primary-black text-primary-white w-10 h-10 rounded-lg flex items-center justify-center mr-3">
               <Building2 className="w-5 h-5" />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl lg:text-2xl font-display font-bold text-primary-dark dark:text-primary-white">
                 JAY AMBE
               </h1>
-              <p className="text-xs text-primary-orange font-medium uppercase tracking-wider">CONSTRUCTION</p>
+              <p className="text-xs text-accent-gray font-medium uppercase tracking-wider">CONSTRUCTION</p>
             </div>
           </Link>
 
@@ -57,13 +57,13 @@ const Navbar = () => {
                 to={link.path}
                 className={`relative font-medium text-sm transition-colors duration-300 ${
                   isActive(link.path)
-                    ? 'text-primary-orange'
-                    : 'text-text-dark dark:text-primary-white hover:text-primary-orange'
+                    ? 'text-accent-gray'
+                    : 'text-text-dark dark:text-primary-white hover:text-accent-gray'
                 }`}
               >
                 {link.name}
                 {isActive(link.path) && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-orange rounded-full"></div>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-gray rounded-full"></div>
                 )}
               </Link>
             ))}
@@ -118,7 +118,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
                   isActive(link.path)
-                    ? 'bg-primary-orange text-primary-white'
+                    ? 'bg-accent-gray text-primary-white'
                     : 'text-primary-dark dark:text-primary-white hover:bg-gray-100 dark:hover:bg-dark-card'
                 }`}
               >

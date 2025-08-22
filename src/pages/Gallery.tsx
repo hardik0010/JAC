@@ -147,8 +147,8 @@ const Gallery = () => {
                   onClick={() => setActiveFilter(filter.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeFilter === filter.id
-                      ? 'bg-primary-orange text-primary-black shadow-medium'
-                      : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:bg-primary-orange/10 hover:text-primary-orange'
+                      ? 'bg-accent-gray text-primary-white shadow-medium'
+                      : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:bg-accent-gray/10 hover:text-accent-gray'
                   }`}
                 >
                   <filter.icon className="w-5 h-5" />
@@ -178,8 +178,8 @@ const Gallery = () => {
                     />
                     {item.type === 'video' && (
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center">
-                          <Play className="w-8 h-8 text-primary-black ml-1" />
+                        <div className="w-16 h-16 bg-accent-gray rounded-full flex items-center justify-center">
+                          <Play className="w-8 h-8 text-primary-white ml-1" />
                         </div>
                       </div>
                     )}
@@ -190,10 +190,10 @@ const Gallery = () => {
                     </div>
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="flex space-x-2">
-                        <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-primary-orange hover:text-primary-black transition-colors duration-300">
+                        <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300">
                           <Download className="w-4 h-4" />
                         </button>
-                        <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-primary-orange hover:text-primary-black transition-colors duration-300">
+                        <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300">
                           <Share2 className="w-4 h-4" />
                         </button>
                       </div>
@@ -232,7 +232,7 @@ const Gallery = () => {
             />
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-4 -right-4 w-10 h-10 bg-primary-orange text-primary-black rounded-full flex items-center justify-center hover:bg-primary-orange/90 transition-colors duration-300"
+              className="absolute -top-4 -right-4 w-10 h-10 bg-accent-gray text-primary-white rounded-full flex items-center justify-center hover:bg-accent-gray/90 transition-colors duration-300"
             >
               ×
             </button>

@@ -1,18 +1,20 @@
 # Jay Ambe Construction Website
 
-A modern, professional construction company website built with React, TypeScript, and Tailwind CSS. This website showcases the services, projects, and expertise of Jay Ambe Construction with a beautiful, responsive design.
+A modern, professional construction company website built with React, TypeScript, and Tailwind CSS. This website showcases the services, projects, and expertise of Jay Ambe Construction with a beautiful, responsive design featuring a clean Black & White monochromatic theme.
 
 ## 🚀 Features
 
 ### Design & UI/UX
 - **Modern Professional Design**: Clean, construction-industry focused design
+- **Black & White Theme**: Elegant monochromatic color scheme for a sophisticated look
 - **Dark/Light Mode Toggle**: Smooth theme switching with persistent preferences
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Smooth Animations**: Framer Motion animations for enhanced user experience
 - **Professional Color Palette**: 
   - White (#FFFFFF)
-  - Orange (#FBB500) 
-  - Black (#151616)
+  - Black (#000000)
+  - Dark Gray (#151616)
+  - Accent Gray (#4A5568)
 
 ### Pages & Sections
 - **Home Page**: Hero section, services overview, statistics, and call-to-action
@@ -92,8 +94,9 @@ src/
 ### Colors
 The color palette is defined in `tailwind.config.js`:
 - Primary White: `#FFFFFF`
-- Primary Orange: `#FBB500`
-- Primary Black: `#151616`
+- Primary Black: `#000000`
+- Primary Dark: `#151616`
+- Accent Gray: `#4A5568`
 
 ### Content
 - Update company information in respective page components

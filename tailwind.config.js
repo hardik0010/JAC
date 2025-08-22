@@ -10,7 +10,7 @@ export default {
       colors: {
         primary: {
           white: '#FFFFFF',
-          orange: '#FBB500',
+          black: '#000000',
           dark: '#151616',
         },
         light: {
@@ -30,6 +30,11 @@ export default {
           bg: '#0A0A0A',
           card: '#1A1A1A',
           border: '#2A2A2A',
+        },
+        accent: {
+          gray: '#4A5568',
+          light: '#718096',
+          dark: '#2D3748',
         }
       },
       fontFamily: {

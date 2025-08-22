@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Building2, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import { Building2, Phone, Mail, MapPin, Facebook, X, Instagram, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -8,8 +8,8 @@ const Footer = () => {
     services: [
       { name: 'Residential Construction', path: '/services' },
       { name: 'Commercial Projects', path: '/services' },
-      { name: 'Renovation & Interiors', path: '/services' },
-      { name: 'Project Management', path: '/services' },
+      { name: 'Turn-key Projects', path: '/services' },
+      { name: 'RCC & Masonry Works', path: '/services' },
     ],
     company: [
       { name: 'About Us', path: '/about' },
@@ -20,10 +20,10 @@ const Footer = () => {
   }
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61576567311914&mibextid=wwXIfr&mibextid=wwXIfr', label: 'Facebook' },
+    { icon: X, href: '#', label: 'X' },
+    { icon: Instagram, href: 'https://www.instagram.com/jayambeconstruction?igsh=eW5lMGZhMHA1bzU0&utm_source=qr', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/jay-ambe-construction-04/', label: 'LinkedIn' },
   ]
 
   return (
@@ -33,24 +33,26 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="bg-primary-orange text-primary-white w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+              <div className="bg-accent-gray text-primary-white w-10 h-10 rounded-lg flex items-center justify-center mr-3">
                 <Building2 className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold text-primary-white">JAY AMBE</h3>
-                <p className="text-xs text-primary-orange font-medium uppercase tracking-wider">CONSTRUCTION</p>
+                <p className="text-xs text-accent-gray font-medium uppercase tracking-wider">CONSTRUCTION</p>
               </div>
             </Link>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Building dreams and creating landmarks with excellence, quality, and innovation. 
-              Your trusted partner in construction for over 25 years.
+              Your trusted partner in construction for over 15 years, specializing in high-rise buildings.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary-orange hover:text-primary-white transition-all duration-300 hover:-translate-y-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -61,13 +63,13 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-orange font-display">Our Services</h4>
+            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Our Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.path}
-                    className="text-gray-300 hover:text-primary-orange transition-colors duration-300 text-sm"
+                    className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -78,13 +80,13 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-orange font-display">Company</h4>
+            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.path}
-                    className="text-gray-300 hover:text-primary-orange transition-colors duration-300 text-sm"
+                    className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -95,38 +97,39 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-orange font-display">Contact Info</h4>
+            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Contact Info</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="bg-primary-orange p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <div className="bg-accent-gray p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-4 h-4 text-primary-white" />
                 </div>
                 <div>
                   <p className="text-gray-300 text-sm">
-                    123 Construction Ave<br />
-                    Building District<br />
-                    City, State 12345
+                    1304, 13TH FLOOR GANESH GLORY<br />
+                    NEAR BSNL OFFICE, JAGATPUR-CHENPUR ROAD<br />
+                    S.G.HIGHWAY, JAGATPUR<br />
+                    AHMEDABAD-382481, GUJARAT
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="bg-primary-orange p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <div className="bg-accent-gray p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-4 h-4 text-primary-white" />
                 </div>
                 <a 
-                  href="tel:+1234567890" 
-                  className="text-gray-300 hover:text-primary-orange transition-colors duration-300 text-sm"
+                  href="tel:+919898989898" 
+                  className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
                 >
-                  +1 (234) 567-8900
+                  +91 98989 89898
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="bg-primary-orange p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <div className="bg-accent-gray p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-4 h-4 text-primary-white" />
                 </div>
                 <a 
                   href="mailto:info@jayambeconstruction.com" 
-                  className="text-gray-300 hover:text-primary-orange transition-colors duration-300 text-sm"
+                  className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
                 >
                   info@jayambeconstruction.com
                 </a>
@@ -142,10 +145,10 @@ const Footer = () => {
               © {currentYear} Jay Ambe Construction. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/contact" className="text-gray-400 hover:text-primary-orange text-sm transition-colors duration-300">
+              <Link to="/contact" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link to="/contact" className="text-gray-400 hover:text-primary-orange text-sm transition-colors duration-300">
+              <Link to="/contact" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
                 Terms of Service
               </Link>
             </div>
@@ -157,3 +160,5 @@ const Footer = () => {
 }
 
 export default Footer
+
+
