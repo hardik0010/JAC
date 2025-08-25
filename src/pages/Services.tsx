@@ -5,8 +5,8 @@ import {
   Wrench, 
   Users, 
   HardHat, 
-  Ruler, 
-  Shield, 
+  Ruler,
+  Shield,
   Clock,
   CheckCircle,
   ArrowRight
@@ -134,10 +134,10 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
               Our <span className="gradient-text">Services</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-xl text-gray-600 mb-8">
               Specialized construction services in high-rise buildings, turn-key projects, and RCC & masonry works. 
               From concept to completion, we deliver excellence in every project.
             </p>
@@ -156,7 +156,7 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border shadow-lg overflow-hidden group"
+                className="bg-white border border-gray-200 shadow-lg overflow-hidden group"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
@@ -172,15 +172,15 @@ const Services = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-4 text-primary-black dark:text-primary-white">
+                  <h3 className="text-2xl font-heading font-bold mb-4 text-primary-black">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <li key={featureIndex} className="flex items-center text-sm text-gray-600">
                         <CheckCircle className="w-4 h-4 text-accent-gray mr-3 flex-shrink-0" />
                         {feature}
                       </li>
@@ -198,7 +198,7 @@ const Services = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -207,10 +207,10 @@ const Services = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Why <span className="gradient-text">Choose Us</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We combine 15+ years of experience with innovative construction techniques 
               to deliver exceptional results that exceed expectations.
             </p>
@@ -229,10 +229,10 @@ const Services = () => {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                   <item.icon className="w-8 h-8 text-accent-gray" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600">
                   {item.description}
                 </p>
               </motion.div>
@@ -250,7 +250,7 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
               Ready to Start Your Project?
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -261,7 +261,7 @@ const Services = () => {
               <a href="/contact" className="btn-primary">
                 Get Free Quote
               </a>
-              <a href="tel:+919898989898" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
+              <a href="tel:+919586822668" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
                 Call Now
               </a>
             </div>

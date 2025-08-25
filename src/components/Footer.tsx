@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Building2, Phone, Mail, MapPin, Facebook, X, Instagram, Linkedin } from 'lucide-react'
+import { Phone, Mail, MapPin, Facebook, X, Instagram, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -33,12 +33,12 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="bg-accent-gray text-primary-white w-10 h-10 rounded-lg flex items-center justify-center mr-3">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="text-xl font-display font-bold text-primary-white">JAY AMBE</h3>
-                <p className="text-xs text-accent-gray font-medium uppercase tracking-wider">CONSTRUCTION</p>
+              <div className="bg-accent-gray text-primary-white w-40 h-7 flex items-center justify-center mr-3">
+                <img 
+                  src="/footer-logo.jpg" 
+                  alt="JAC Logo" 
+                  // className="w-full h-full object-cover"
+                />
               </div>
             </Link>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -63,7 +63,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Our Services</h4>
+                         <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Our Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -80,7 +80,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Company</h4>
+                         <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -97,7 +97,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-primary-white font-display">Contact Info</h4>
+                         <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Contact Info</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="bg-accent-gray p-2 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0">
@@ -117,10 +117,10 @@ const Footer = () => {
                   <Phone className="w-4 h-4 text-primary-white" />
                 </div>
                 <a 
-                  href="tel:+919898989898" 
+                  href="tel:+919586822668" 
                   className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
                 >
-                  +91 98989 89898
+                  +91 95868 22668
                 </a>
               </div>
               <div className="flex items-center space-x-3">

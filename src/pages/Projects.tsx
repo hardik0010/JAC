@@ -3,9 +3,7 @@ import { motion } from 'framer-motion'
 import { 
   Building2, 
   Home, 
-  Wrench, 
   MapPin, 
-  Calendar,
   ArrowRight
 } from 'lucide-react'
 
@@ -139,7 +137,7 @@ const Projects = () => {
     { id: 'all', label: 'All Projects', icon: Building2 },
     { id: 'residential', label: 'Residential', icon: Home },
     { id: 'commercial', label: 'Commercial', icon: Building2 },
-    { id: 'renovation', label: 'Completed', icon: Wrench }
+    { id: 'renovation', label: 'Completed', icon: Building2 }
   ]
 
   const filteredProjects = activeFilter === 'all' 
@@ -153,7 +151,7 @@ const Projects = () => {
       {/* Hero Section */}
 
       {/* Filter Section */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -162,7 +160,7 @@ const Projects = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-8">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8">
               Browse by <span className="gradient-text">Category</span>
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
@@ -173,7 +171,7 @@ const Projects = () => {
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeFilter === filter.id
                       ? 'bg-accent-gray text-primary-white shadow-medium'
-                      : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:bg-accent-gray/10 hover:text-accent-gray'
+                      : 'bg-white text-gray-600 hover:bg-accent-gray/10 hover:text-accent-gray'
                   }`}
                 >
                   <filter.icon className="w-5 h-5" />
@@ -192,7 +190,7 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border shadow-lg overflow-hidden group"
+                className="bg-white border border-gray-200 shadow-lg overflow-hidden group"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
@@ -208,21 +206,20 @@ const Projects = () => {
                         <span className="text-sm">{project.location}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4" />
                         <span className="text-sm">{project.year}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-primary-black dark:text-primary-white group-hover:text-accent-gray transition-colors duration-300">
+                  <h3 className="text-xl font-heading font-bold mb-3 text-primary-black group-hover:text-accent-gray transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                  <p className="text-gray-600 mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-accent-gray mb-2">Project Details:</h4>
+                    <h4 className="text-sm font-heading font-semibold text-accent-gray mb-2">Project Details:</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.features.map((feature, featureIndex) => (
                         <span
@@ -249,7 +246,7 @@ const Projects = () => {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-gray-600 dark:text-gray-300 text-lg">
+              <p className="text-gray-600 text-lg">
                 No projects found in this category. Please try another filter.
               </p>
             </motion.div>
@@ -258,68 +255,7 @@ const Projects = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-primary-black text-primary-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="text-3xl lg:text-4xl font-bold text-accent-gray mb-2">
-                15+
-              </div>
-              <div className="text-gray-300">
-                Years Experience
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="text-3xl lg:text-4xl font-bold text-accent-gray mb-2">
-                50+
-              </div>
-              <div className="text-gray-300">
-                Projects Completed
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="text-3xl lg:text-4xl font-bold text-accent-gray mb-2">
-                25+
-              </div>
-              <div className="text-gray-300">
-                Team Members
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="text-3xl lg:text-4xl font-bold text-accent-gray mb-2">
-                100%
-              </div>
-              <div className="text-gray-300">
-                Client Satisfaction
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="section-padding bg-gradient-to-br from-accent-gray to-accent-gray/80">
@@ -330,7 +266,7 @@ const Projects = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-white mb-6">
               Ready to Start Your Project?
             </h2>
             <p className="text-lg text-primary-white/95 mb-8 max-w-2xl mx-auto">
@@ -341,7 +277,7 @@ const Projects = () => {
               <a href="/contact" className="btn-secondary bg-primary-black text-primary-white border-primary-black hover:bg-primary-black/90">
                 Get Free Quote
               </a>
-              <a href="tel:+919898989898" className="btn-secondary bg-transparent text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
+              <a href="tel:+919586822668" className="btn-secondary bg-transparent text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
                 Call Now
               </a>
             </div>

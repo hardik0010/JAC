@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
-  Building2, 
-  Home, 
-  Wrench, 
+  Building2,
+  Home,
+  Wrench,
   Play,
   Download,
   Share2
@@ -128,7 +128,7 @@ const Gallery = () => {
       {/* Hero Section */}  
 
       {/* Filter Section */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -137,7 +137,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-8">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8">
               Browse by <span className="gradient-text">Category</span>
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
@@ -148,7 +148,7 @@ const Gallery = () => {
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                     activeFilter === filter.id
                       ? 'bg-accent-gray text-primary-white shadow-medium'
-                      : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:bg-accent-gray/10 hover:text-accent-gray'
+                      : 'bg-white text-gray-600 hover:bg-accent-gray/10 hover:text-accent-gray'
                   }`}
                 >
                   <filter.icon className="w-5 h-5" />
@@ -185,7 +185,7 @@ const Gallery = () => {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h3 className="text-white font-semibold mb-1">{item.title}</h3>
+                      <h3 className="text-white font-heading font-semibold mb-1">{item.title}</h3>
                       <p className="text-gray-200 text-sm">{item.description}</p>
                     </div>
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -210,7 +210,7 @@ const Gallery = () => {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-gray-600 dark:text-gray-300 text-lg">
+              <p className="text-gray-600 text-lg">
                 No images found in this category. Please try another filter.
               </p>
             </motion.div>

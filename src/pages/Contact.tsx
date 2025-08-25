@@ -28,7 +28,7 @@ const Contact = () => {
       icon: Phone,
       title: 'Phone Number',
       details: [
-        '+91 98989 89898',
+        '+91 95868 22668',
         'Available Mon-Sat: 9:00 AM - 7:00 PM'
       ]
     },
@@ -76,10 +76,10 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
               Get in <span className="gradient-text">Touch</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-xl text-gray-600 mb-8">
               Ready to start your construction project? Contact us today for a free consultation 
               and let's discuss how we can bring your vision to life.
             </p>
@@ -98,7 +98,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-display font-bold mb-8">
+              <h2 className="text-3xl font-heading font-bold mb-8">
                 Send Us a <span className="gradient-text">Message</span>
               </h2>
               
@@ -109,10 +109,10 @@ const Contact = () => {
                   className="card p-8 text-center"
                 >
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-primary-black dark:text-primary-white mb-2">
+                                     <h3 className="text-2xl font-heading font-bold text-primary-black mb-2">
                     Message Sent Successfully!
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-600">
                     Thank you for contacting us. We'll get back to you within 24 hours.
                   </p>
                 </motion.div>
@@ -120,7 +120,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                         First Name *
                       </label>
                       <input
@@ -128,11 +128,11 @@ const Contact = () => {
                         id="firstName"
                         name="firstName"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900"
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
                         Last Name *
                       </label>
                       <input
@@ -140,13 +140,13 @@ const Contact = () => {
                         id="lastName"
                         name="lastName"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -154,31 +154,31 @@ const Contact = () => {
                       id="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
                       Project Type *
                     </label>
                     <select
                       id="projectType"
                       name="projectType"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900"
                     >
                       <option value="">Select Project Type</option>
                       <option value="residential">Residential Construction</option>
@@ -191,7 +191,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                       Project Details *
                     </label>
                     <textarea
@@ -200,7 +200,7 @@ const Contact = () => {
                       rows={5}
                       required
                       placeholder="Please describe your project requirements, timeline, and any specific details..."
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-dark-border rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white dark:bg-dark-card text-gray-900 dark:text-primary-white resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gray focus:border-transparent bg-white text-gray-900 resize-none"
                     ></textarea>
                   </div>
                   
@@ -232,7 +232,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-display font-bold mb-8">
+              <h2 className="text-3xl font-heading font-bold mb-8">
                 Contact <span className="gradient-text">Information</span>
               </h2>
               
@@ -251,11 +251,11 @@ const Contact = () => {
                         <info.icon className="w-6 h-6 text-accent-gray" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold mb-2 text-primary-black dark:text-primary-white">
+                                                 <h3 className="text-lg font-heading font-semibold mb-2 text-primary-black">
                           {info.title}
                         </h3>
                         {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600 dark:text-gray-300">
+                          <p key={detailIndex} className="text-gray-600">
                             {detail}
                           </p>
                         ))}
@@ -273,16 +273,16 @@ const Contact = () => {
                 viewport={{ once: true }}
                 className="card p-6 mt-8 bg-accent-gray text-primary-black"
               >
-                <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
+                                 <h3 className="text-xl font-heading font-semibold mb-4">Need Immediate Assistance?</h3>
                 <p className="mb-4">
                   For urgent inquiries or emergency situations, please call us directly.
                 </p>
                 <a
-                  href="tel:+919898989898"
+                  href="tel:+919586822668"
                   className="inline-flex items-center font-semibold hover:underline"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  +91 98989 89898
+                  +91 95868 22668
                 </a>
               </motion.div>
             </motion.div>
@@ -291,7 +291,7 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -300,10 +300,10 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
               Find Us on the <span className="gradient-text">Map</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Visit our office or let us know if you'd like us to come to your location for a consultation.
             </p>
           </motion.div>
@@ -342,10 +342,10 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
               Frequently Asked <span className="gradient-text">Questions</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Get answers to common questions about our services and processes.
             </p>
           </motion.div>
@@ -358,10 +358,10 @@ const Contact = () => {
               viewport={{ once: true }}
               className="card p-6"
             >
-              <h3 className="text-lg font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
                 How long does a typical project take?
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Project timelines vary depending on scope and complexity. Small renovations may take 2-4 weeks, 
                 while large commercial projects can take 6-18 months. We provide detailed timelines during consultation.
               </p>
@@ -374,10 +374,10 @@ const Contact = () => {
               viewport={{ once: true }}
               className="card p-6"
             >
-              <h3 className="text-lg font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
                 Do you provide free consultations?
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Yes, we offer free initial consultations to discuss your project requirements, 
                 provide estimates, and answer any questions you may have about our services.
               </p>
@@ -390,10 +390,10 @@ const Contact = () => {
               viewport={{ once: true }}
               className="card p-6"
             >
-              <h3 className="text-lg font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
                 What areas do you serve?
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 We serve the entire metropolitan area and surrounding regions. 
                 Contact us to confirm if we cover your specific location.
               </p>
@@ -406,10 +406,10 @@ const Contact = () => {
               viewport={{ once: true }}
               className="card p-6"
             >
-              <h3 className="text-lg font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
                 Are you licensed and insured?
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Yes, we are fully licensed, bonded, and insured. We maintain comprehensive 
                 insurance coverage to protect our clients and team members.
               </p>

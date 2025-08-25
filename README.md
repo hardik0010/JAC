@@ -6,8 +6,10 @@ A modern, professional construction company website built with React, TypeScript
 
 ### Design & UI/UX
 - **Modern Professional Design**: Clean, construction-industry focused design
-- **Black & White Theme**: Elegant monochromatic color scheme for a sophisticated look
-- **Dark/Light Mode Toggle**: Smooth theme switching with persistent preferences
+- **Light Theme**: Elegant monochromatic color scheme for a sophisticated look
+- **Custom Typography**: 
+  - Headings: Libre Baskerville (serif font)
+  - Body Text: Cabin (modern sans-serif)
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Smooth Animations**: Framer Motion animations for enhanced user experience
 - **Professional Color Palette**: 
@@ -19,7 +21,7 @@ A modern, professional construction company website built with React, TypeScript
 ### Pages & Sections
 - **Home Page**: Hero section, services overview, statistics, and call-to-action
 - **Services Page**: Detailed service offerings with features and benefits
-- **Projects Page**: Portfolio with filtering by category (residential, commercial, renovation)
+- **Projects Page**: Portfolio with filtering by category (residential, commercial, completed)
 - **About Page**: Company story, mission, vision, values, timeline, and team
 - **Gallery Page**: Masonry layout with image/video showcase and filtering
 - **Contact Page**: Contact form, company information, map placeholder, and FAQ
@@ -33,6 +35,7 @@ A modern, professional construction company website built with React, TypeScript
 - **Vite** for fast development and building
 - **Responsive Navigation** with mobile menu
 - **Form Handling** with validation and submission states
+- **Custom Font Integration** with Google Fonts
 
 ## 🛠️ Installation & Setup
 
@@ -75,8 +78,6 @@ src/
 ├── components/          # Reusable components
 │   ├── Navbar.tsx      # Navigation component
 │   └── Footer.tsx      # Footer component
-├── contexts/           # React contexts
-│   └── ThemeContext.tsx # Dark/light mode context
 ├── pages/              # Page components
 │   ├── Home.tsx        # Home page
 │   ├── Services.tsx    # Services page
@@ -87,6 +88,10 @@ src/
 ├── App.tsx             # Main app component
 ├── main.tsx           # Entry point
 └── index.css          # Global styles
+public/
+├── logo.jpg           # Company logo
+├── tab-logo.jpg       # Favicon
+└── footer-logo.jpg    # Footer logo
 ```
 
 ## 🎨 Customization
@@ -97,6 +102,11 @@ The color palette is defined in `tailwind.config.js`:
 - Primary Black: `#000000`
 - Primary Dark: `#151616`
 - Accent Gray: `#4A5568`
+
+### Typography
+Fonts are configured in `tailwind.config.js` and imported from Google Fonts:
+- **Headings**: Libre Baskerville (serif)
+- **Body Text**: Cabin (sans-serif)
 
 ### Content
 - Update company information in respective page components
@@ -116,13 +126,6 @@ The website is fully responsive with breakpoints:
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
 
-## 🌙 Dark Mode
-
-The website includes a smooth dark/light mode toggle that:
-- Persists user preference in localStorage
-- Respects system preference on first visit
-- Provides smooth transitions between themes
-
 ## 🚀 Deployment
 
 ### Build for Production
@@ -138,9 +141,10 @@ npm run build
 
 ## 📞 Contact Information
 
-For questions about this website or to request modifications:
-- Email: [Your Email]
-- Phone: [Your Phone]
+**Jay Ambe Construction**
+- **Phone**: +91 95868 22668
+- **Email**: info@jayambeconstruction.com
+- **Address**: 1304, 13TH FLOOR GANESH GLORY, NEAR BSNL OFFICE, JAGATPUR-CHENPUR ROAD, S.G.HIGHWAY, JAGATPUR, AHMEDABAD-382481, GUJARAT
 
 ## 📄 License
 
@@ -158,6 +162,14 @@ Potential improvements for future versions:
 - SEO optimization
 - Performance monitoring
 - Analytics integration
+
+## 🛠️ Recent Updates
+
+- ✅ Removed dark/light mode toggle (light theme only)
+- ✅ Updated to custom typography (Libre Baskerville + Cabin)
+- ✅ Updated phone numbers throughout the project
+- ✅ Replaced favicon with custom tab logo
+- ✅ Optimized for production deployment
 
 ---
 

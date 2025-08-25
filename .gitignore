@@ -183,3 +183,18 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Vite specific
+.vite/
+
+# Local development
+*.local
+
+# Backup files
+*.bak
+*.backup
+
+# OS specific
+Thumbs.db
+.DS_Store
+desktop.ini

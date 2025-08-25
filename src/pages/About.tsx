@@ -115,16 +115,16 @@ const About = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                 Our <span className="gradient-text">Story</span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Founded in 2010, Jay Ambe Construction began its journey in the construction industry through RCC and masonry labor work for small-scale projects. With dedication, skilled workmanship, and a focus on quality, we steadily built our reputation in Ahmedabad's competitive construction market.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 As time progressed, our successful completion of low-rise projects caught the attention of reputed names in the industry. Recognizing our work ethic, reliability, and commitment to delivering quality, clients entrusted us with larger, high-rise projects—marking a significant turning point in our growth. From constructing modest buildings, we advanced to constructing 14 to 22-floor high-rise structures, handling complex challenges with confidence.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed">
                 Today, our journey stands as a testament to continuous growth driven by quality, trust, and commitment—qualities that remain the foundation of every project we undertake.
               </p>
             </motion.div>
@@ -141,7 +141,7 @@ const About = () => {
                 className="rounded-xl shadow-strong"
               />
               <div className="absolute -bottom-6 -left-6 bg-accent-gray text-primary-white p-6 rounded-xl">
-                <div className="text-3xl font-bold">15+</div>
+                <div className="text-3xl font-heading font-bold">15+</div>
                 <div className="text-sm">Years of Excellence</div>
               </div>
             </motion.div>
@@ -150,7 +150,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
@@ -163,10 +163,10 @@ const About = () => {
               <div className="w-16 h-16 bg-accent-gray/20 rounded-xl flex items-center justify-center mb-6">
                 <Target className="w-8 h-8 text-accent-gray" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-primary-black dark:text-primary-white">
+              <h3 className="text-2xl font-heading font-bold mb-4 text-primary-black">
                 Our Mission
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 To grow as a leading construction company by consistently delivering quality projects on time, while continuing to fulfill our clients' visions with honesty, transparency, and professionalism.
               </p>
             </motion.div>
@@ -180,10 +180,10 @@ const About = () => {
               <div className="w-16 h-16 bg-accent-gray/20 rounded-xl flex items-center justify-center mb-6">
                 <Eye className="w-8 h-8 text-accent-gray" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-primary-black dark:text-primary-white">
+              <h3 className="text-2xl font-heading font-bold mb-4 text-primary-black">
                 Our Vision
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 To be the trusted name in high-rise construction, specializing in projects ranging from 14 to 22 floors, while maintaining our commitment to ethical work practices, timely completion, and uncompromising quality.
               </p>
             </motion.div>
@@ -201,10 +201,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Company <span className="gradient-text">Overview</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto">
               JAY AMBE CONSTRUCTION is a trusted name in the construction industry, proudly based in Ahmedabad, Gujarat, India, since 2010. 
               We specialize in the construction of high-rise buildings—ranging from 14 to 22 floors—and handle a wide spectrum of projects, 
               including turn-key projects, all-labor contracts, and RCC-masonry works.
@@ -222,10 +222,10 @@ const About = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                 <Building2 className="w-8 h-8 text-accent-gray" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                 High-Rise Specialists
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Expertise in constructing buildings ranging from 14 to 22 floors with precision and quality.
               </p>
             </motion.div>
@@ -240,10 +240,10 @@ const About = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                 <Users className="w-8 h-8 text-accent-gray" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                 Turnkey Solutions
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Complete project delivery from concept to completion within defined timeframes and quality standards.
               </p>
             </motion.div>
@@ -258,10 +258,10 @@ const About = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                 <Award className="w-8 h-8 text-accent-gray" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                 Trusted Partner
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 Long-standing relationships with clients built on trust, satisfaction, and consistent quality delivery.
               </p>
             </motion.div>
@@ -270,7 +270,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -279,10 +279,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Our <span className="gradient-text">Values</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               These core values guide everything we do and shape the way we work with clients, 
               partners, and our community.
             </p>
@@ -301,10 +301,10 @@ const About = () => {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                   <value.icon className="w-8 h-8 text-accent-gray" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-primary-black dark:text-primary-white">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                   {value.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600">
                   {value.description}
                 </p>
               </motion.div>
@@ -323,10 +323,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Our <span className="gradient-text">Journey</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               A timeline of our growth and achievements over the past 15 years in the construction industry.
             </p>
           </motion.div>
@@ -345,17 +345,17 @@ const About = () => {
                 >
                   <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
                     <div className="card p-6">
-                      <div className="text-2xl font-bold text-accent-gray mb-2">{item.year}</div>
-                      <h3 className="text-xl font-semibold mb-2 text-primary-black dark:text-primary-white">
+                      <div className="text-2xl font-heading font-bold text-accent-gray mb-2">{item.year}</div>
+                      <h3 className="text-xl font-heading font-semibold mb-2 text-primary-black">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
+                      <p className="text-gray-600">
                         {item.description}
                       </p>
                     </div>
                   </div>
                   <div className="relative z-10">
-                    <div className="w-4 h-4 bg-accent-gray rounded-full border-4 border-white dark:border-dark-bg"></div>
+                    <div className="w-4 h-4 bg-accent-gray rounded-full border-4 border-white"></div>
                   </div>
                   <div className="w-1/2"></div>
                 </motion.div>
@@ -366,7 +366,7 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-bg">
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -375,10 +375,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Meet Our <span className="gradient-text">Team</span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our experienced leadership team brings decades of combined expertise 
               in construction, architecture, and project management.
             </p>
@@ -403,12 +403,12 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-primary-black dark:text-primary-white">
+                  <h3 className="text-xl font-heading font-bold mb-2 text-primary-black">
                     {member.name}
                   </h3>
                   <p className="text-accent-gray font-semibold mb-1">{member.position}</p>
                   <p className="text-sm text-gray-500 mb-3">{member.experience} Experience</p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                  <p className="text-gray-600 text-sm mb-4">
                     {member.description}
                   </p>
                   <div className="flex justify-center space-x-3">
@@ -416,7 +416,7 @@ const About = () => {
                       href={member.social.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-8 h-8 bg-gray-100 dark:bg-dark-border rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300"
+                      className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300"
                     >
                       <Linkedin className="w-4 h-4" />
                     </a>
@@ -424,7 +424,7 @@ const About = () => {
                       href={member.social.x}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-8 h-8 bg-gray-100 dark:bg-dark-border rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300"
+                      className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-accent-gray hover:text-primary-white transition-colors duration-300"
                       aria-label="X"
                     >
                       <X className="w-4 h-4" />

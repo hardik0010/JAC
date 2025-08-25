@@ -4,7 +4,6 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -26,11 +25,7 @@ export default {
           dark: '#212529',
           light: '#495057',
         },
-        dark: {
-          bg: '#0A0A0A',
-          card: '#1A1A1A',
-          border: '#2A2A2A',
-        },
+
         accent: {
           gray: '#4A5568',
           light: '#718096',
@@ -38,10 +33,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
-        display: ['Source Sans Pro', 'system-ui', 'sans-serif'],
-        bitter: ['Bitter', 'serif'],
-        playfair: ['Playfair Display', 'serif'],
+        sans: ['Cabin', 'system-ui', 'sans-serif'],
+        display: ['Libre Baskerville', 'serif'],
+        body: ['Cabin', 'system-ui', 'sans-serif'],
+        heading: ['Libre Baskerville', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
