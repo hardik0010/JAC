@@ -105,9 +105,30 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - Hidden */}
-        <div className="hidden">
-          {/* Mobile navigation menu is now hidden */}
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isOpen 
+            ? 'max-h-96 opacity-100 visible' 
+            : 'max-h-0 opacity-0 invisible'
+        } overflow-hidden`}>
+          <div className="py-6 border-t border-gray-200">
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`font-heading font-medium text-lg transition-colors duration-300 ${
+                    isActive(link.path)
+                      ? 'text-accent-gray'
+                      : 'text-text-dark hover:text-accent-gray'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </nav>
