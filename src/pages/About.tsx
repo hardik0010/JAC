@@ -105,8 +105,8 @@ const About = () => {
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
 
-      {/* Company Story */}
-      <section className="section-padding">
+             {/* Company Story */}
+       <section className="py-12 lg:py-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -149,8 +149,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="section-padding bg-gray-50">
+             {/* Mission & Vision */}
+       <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
@@ -191,34 +191,40 @@ const About = () => {
         </div>
       </section>
 
-      {/* Company Overview */}
-      <section className="section-padding">
+              {/* Company Overview */}
+        <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+             {/* Left Column - Company Description */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+               initial={{ opacity: 0, x: -30 }}
+               whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
-              Company <span className="gradient-text">Overview</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+             >
+                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-6 text-primary-black">
+                  Company <span className="text-accent-gray">Overview</span>
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
               JAY AMBE CONSTRUCTION is a trusted name in the construction industry, proudly based in Ahmedabad, Gujarat, India, since 2010. 
               We specialize in the construction of high-rise buildings—ranging from 14 to 22 floors—and handle a wide spectrum of projects, 
               including turn-key projects, all-labor contracts, and RCC-masonry works.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                           {/* Right Column - 3 Points Card */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center"
-            >
+              >
+                                 <div className="bg-white p-8 shadow-lg border border-gray-100">
+                   <div className="grid grid-cols-1 gap-8">
+                     {/* First Row - 2 items */}
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                       {/* High-Rise Specialists */}
+                       <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                 <Building2 className="w-8 h-8 text-accent-gray" />
               </div>
@@ -228,33 +234,26 @@ const About = () => {
               <p className="text-gray-600">
                 Expertise in constructing buildings ranging from 14 to 22 floors with precision and quality.
               </p>
-            </motion.div>
+                       </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
+                       {/* Turnkey Solutions */}
+                       <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
-                <Users className="w-8 h-8 text-accent-gray" />
+                           <Target className="w-8 h-8 text-accent-gray" />
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3 text-primary-black">
                 Turnkey Solutions
               </h3>
               <p className="text-gray-600">
-                Complete project delivery from concept to completion within defined timeframes and quality standards.
-              </p>
-            </motion.div>
+                           Complete project management from concept to completion, ensuring seamless execution.
+                         </p>
+                       </div>
+                     </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
+                     {/* Second Row - 1 item */}
+                     <div className="grid grid-cols-1">
+                       {/* Trusted Partner */}
+                       <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-accent-gray/20 flex items-center justify-center">
                 <Award className="w-8 h-8 text-accent-gray" />
               </div>
@@ -262,15 +261,19 @@ const About = () => {
                 Trusted Partner
               </h3>
               <p className="text-gray-600">
-                Long-standing relationships with clients built on trust, satisfaction, and consistent quality delivery.
+                           Building lasting relationships through quality work, transparency, and reliability.
               </p>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="section-padding bg-gray-50">
+             {/* Values */}
+       <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -313,9 +316,16 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding">
-        <div className="container-custom">
+             {/* Journey Section */}
+       <section className="py-12 lg:py-16 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-gray/5 to-primary-black/5"></div>
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-accent-gray rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-primary-black rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -323,50 +333,85 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
               Our <span className="gradient-text">Journey</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A timeline of our growth and achievements over the past 15 years in the construction industry.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              A remarkable 15-year journey from humble beginnings to becoming industry leaders in high-rise construction.
             </p>
           </motion.div>
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-accent-gray/20"></div>
-            <div className="space-y-12">
+          {/* Journey Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {timeline.map((item, index) => (
                 <motion.div
                   key={item.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
                   viewport={{ once: true }}
-                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                >
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="card p-6">
-                      <div className="text-2xl font-heading font-bold text-accent-gray mb-2">{item.year}</div>
-                      <h3 className="text-xl font-heading font-semibold mb-2 text-primary-black">
+                className="group relative"
+              >
+                                 {/* Card Background */}
+                 <div className="relative bg-white p-8 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-500">
+                   {/* Year Badge */}
+                   <div className="absolute -top-6 left-8 bg-gradient-to-r from-accent-gray to-primary-black text-white px-6 py-3 rounded-lg font-heading font-bold text-lg shadow-lg">
+                     {item.year}
+                   </div>
+                  
+                  {/* Content */}
+                  <div className="mt-8">
+                    <h3 className="text-2xl font-heading font-bold mb-4 text-primary-black group-hover:text-accent-gray transition-colors duration-300">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600">
+                    <p className="text-gray-600 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-accent-gray/10 rounded-full group-hover:bg-accent-gray/20 transition-colors duration-300"></div>
+                  <div className="absolute bottom-4 left-4 w-4 h-4 bg-primary-black/10 rounded-full group-hover:bg-primary-black/20 transition-colors duration-300"></div>
                   </div>
-                  <div className="relative z-10">
-                    <div className="w-4 h-4 bg-accent-gray rounded-full border-4 border-white"></div>
-                  </div>
-                  <div className="w-1/2"></div>
+                
+                {/* Connection Lines for Desktop */}
+                {index < timeline.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-accent-gray/30 to-transparent transform -translate-y-1/2"></div>
+                )}
                 </motion.div>
               ))}
             </div>
+
+          {/* Bottom Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            <div className="inline-flex items-center space-x-8 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-6 shadow-lg border border-white/20">
+              <div className="text-center">
+                <div className="text-3xl font-heading font-bold text-accent-gray">15+</div>
+                <div className="text-sm text-gray-600">Years Experience</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div className="text-center">
+                <div className="text-3xl font-heading font-bold text-accent-gray">100+</div>
+                <div className="text-sm text-gray-600">Projects Completed</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div className="text-center">
+                <div className="text-3xl font-heading font-bold text-accent-gray">22</div>
+                <div className="text-sm text-gray-600">Floor Specialists</div>
           </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="section-padding bg-gray-50">
+             {/* Team */}
+       <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

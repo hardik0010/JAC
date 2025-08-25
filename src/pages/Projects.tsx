@@ -258,32 +258,7 @@ const Projects = () => {
       
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-accent-gray to-accent-gray/80">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-white mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-lg text-primary-white/95 mb-8 max-w-2xl mx-auto">
-              Let's discuss your construction needs and create something extraordinary together. 
-              Our team is ready to bring your vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="btn-secondary bg-primary-black text-primary-white border-primary-black hover:bg-primary-black/90">
-                Get Free Quote
-              </a>
-              <a href="tel:+919586822668" className="btn-secondary bg-transparent text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
-                Call Now
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      
     </div>
   )
 }

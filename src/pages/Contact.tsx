@@ -68,25 +68,6 @@ const Contact = () => {
   return (
     <div className="pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-accent-gray/10 to-primary-black/5">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              Get in <span className="gradient-text">Touch</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Ready to start your construction project? Contact us today for a free consultation 
-              and let's discuss how we can bring your vision to life.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Contact Form & Info */}
       <section className="section-padding">
         <div className="container-custom">
@@ -266,25 +247,7 @@ const Contact = () => {
               </div>
 
               {/* Quick Contact */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="card p-6 mt-8 bg-accent-gray text-primary-black"
-              >
-                                 <h3 className="text-xl font-heading font-semibold mb-4">Need Immediate Assistance?</h3>
-                <p className="mb-4">
-                  For urgent inquiries or emergency situations, please call us directly.
-                </p>
-                <a
-                  href="tel:+919586822668"
-                  className="inline-flex items-center font-semibold hover:underline"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  +91 95868 22668
-                </a>
-              </motion.div>
+              
             </motion.div>
           </div>
         </div>
@@ -333,90 +296,7 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              Frequently Asked <span className="gradient-text">Questions</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Get answers to common questions about our services and processes.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="card p-6"
-            >
-              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
-                How long does a typical project take?
-              </h3>
-              <p className="text-gray-600">
-                Project timelines vary depending on scope and complexity. Small renovations may take 2-4 weeks, 
-                while large commercial projects can take 6-18 months. We provide detailed timelines during consultation.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="card p-6"
-            >
-              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
-                Do you provide free consultations?
-              </h3>
-              <p className="text-gray-600">
-                Yes, we offer free initial consultations to discuss your project requirements, 
-                provide estimates, and answer any questions you may have about our services.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="card p-6"
-            >
-              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
-                What areas do you serve?
-              </h3>
-              <p className="text-gray-600">
-                We serve the entire metropolitan area and surrounding regions. 
-                Contact us to confirm if we cover your specific location.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="card p-6"
-            >
-              <h3 className="text-lg font-heading font-semibold mb-3 text-primary-black">
-                Are you licensed and insured?
-              </h3>
-              <p className="text-gray-600">
-                Yes, we are fully licensed, bonded, and insured. We maintain comprehensive 
-                insurance coverage to protect our clients and team members.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
     </div>

@@ -40,9 +40,9 @@ const Home = () => {
   ]
 
   const stats = [
-    { number: '150+', label: 'Projects Completed', icon: Award },
-    { number: '15+', label: 'Years Experience', icon: Building2 },
-    { number: '50+', label: 'Team Members', icon: Users },
+    { number: '100+', label: 'High Rise Towers', icon: Award },
+    { number: '25+', label: 'Years Experience', icon: Building2 },
+    { number: '30+', label: 'Team Members', icon: Users },
     { number: '100%', label: 'Client Satisfaction', icon: Award }
   ]
 
@@ -73,7 +73,7 @@ const Home = () => {
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
               Building Dreams,
-              <span className="block text-accent-gray">Creating Landmarks</span>
+              <span className="block text-gray-400 mt-2">Creating Landmarks</span>
             </h1>
             <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed text-gray-200">
               Professional construction services delivering excellence in every project. 
@@ -163,52 +163,50 @@ const Home = () => {
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  transition: { duration: 0.2 }
-                }}
-                className="bg-primary-white border-border-gray overflow-hidden shadow-lg border group cursor-pointer transform transition-all duration-500 hover:shadow-xl"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <div 
-                    className="w-full h-full bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${service.image}')` }}
-                  ></div>
-                  
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 text-accent-gray w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-200 group-hover:scale-110">
-                    <service.icon className="w-6 h-6" />
+              <Link to="/services" key={service.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    transition: { duration: 0.2 }
+                  }}
+                  className="bg-primary-white border-border-gray overflow-hidden shadow-lg border group cursor-pointer transform transition-all duration-500 hover:shadow-xl"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <div 
+                      className="w-full h-full bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105"
+                      style={{ backgroundImage: `url('${service.image}')` }}
+                    ></div>
+                    
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-4 right-4 bg-white/90 text-accent-gray w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-200 group-hover:scale-110">
+                      <service.icon className="w-6 h-6" />
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 font-heading text-primary-dark group-hover:text-accent-gray transition-colors duration-200">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed mb-4 text-text-light">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.slice(0, 2).map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-text-dark">
-                        <Check className="w-3 h-3 text-accent-gray mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link 
-                    to="/services" 
-                    className="inline-flex items-center font-semibold text-sm hover:gap-3 transition-all duration-200 relative z-10 text-accent-gray group-hover:text-primary-dark"
-                  >
-                    Learn More <ArrowRight className="ml-2 w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </motion.div>
+                                     <div className="p-6 h-80 flex flex-col">
+                     <h3 className="text-xl font-bold mb-3 font-heading text-primary-dark group-hover:text-accent-gray transition-colors duration-200">
+                       {service.title}
+                     </h3>
+                     <p className="text-sm leading-relaxed text-text-light flex-grow">
+                       {service.description}
+                     </p>
+                     <ul className="space-y-2">
+                       {service.features.slice(0, 2).map((feature, idx) => (
+                         <li key={idx} className="flex items-center text-sm text-text-dark">
+                           <Check className="w-3 h-3 text-accent-gray mr-2 flex-shrink-0" />
+                           {feature}
+                         </li>
+                       ))}
+                     </ul>
+                     <div className="inline-flex items-center font-semibold text-sm hover:gap-3 transition-all duration-200 relative z-10 text-accent-gray group-hover:text-primary-dark mt-6">
+                       Learn More <ArrowRight className="ml-2 w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1" />
+                     </div>
+                   </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -243,7 +241,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-300 bg-white text-accent-gray hover:bg-gray-100">
                 <FileText className="mr-2 w-5 h-5" />
-                Get Free Quote
+                Estimate Now
               </Link>
               <a href="tel:+919586822668" className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg border-2 transition-all duration-300 border-white text-white hover:bg-white hover:text-accent-gray">
                 <Phone className="mr-2 w-5 h-5" />
@@ -258,3 +256,5 @@ const Home = () => {
 }
 
 export default Home
+
+

@@ -9,7 +9,9 @@ import {
   Shield,
   Clock,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  FileText,
+  Phone
 } from 'lucide-react'
 
 const Services = () => {
@@ -125,28 +127,30 @@ const Services = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-accent-gray/10 to-primary-black/5">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              Our <span className="gradient-text">Services</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Specialized construction services in high-rise buildings, turn-key projects, and RCC & masonry works. 
-              From concept to completion, we deliver excellence in every project.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+             {/* Hero Section */}
+       <section className="relative py-12 lg:py-20 bg-gradient-to-br from-accent-gray/10 to-primary-black/5">
+         <div className="container-custom">
+           <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8 }}
+             className="text-left max-w-4xl"
+           >
+             <h4 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+               Our <span className="gradient-text">Services</span>
+             </h4>
+             <p className="text-xl text-gray-600">
+             <b>JAY AMBE CONSTRUCTION</b> is a trusted name in the construction industry, proudly based in Ahmedabad, 
+             Gujarat, India, since 2010. We specialize in the construction of high-rise buildings—ranging from
+              14 to 22 floors—and handle a wide spectrum of projects, including turn-key projects, all-labor 
+              contracts, and RCC-masonry works.
+             </p>
+           </motion.div>
+         </div>
+       </section>
 
-      {/* Services Grid */}
-      <section className="section-padding">
+               {/* Services Grid */}
+        <section className="py-8 lg:py-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
@@ -178,18 +182,14 @@ const Services = () => {
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-gray-600">
-                        <CheckCircle className="w-4 h-4 text-accent-gray mr-3 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="inline-flex items-center text-accent-gray font-semibold hover:text-accent-gray/80 transition-colors duration-300">
-                    Learn More
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </button>
+                                     <ul className="space-y-2">
+                     {service.features.map((feature, featureIndex) => (
+                       <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                         <CheckCircle className="w-4 h-4 text-accent-gray mr-3 flex-shrink-0" />
+                         {feature}
+                       </li>
+                     ))}
+                   </ul>
                 </div>
               </motion.div>
             ))}
@@ -241,33 +241,45 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-primary-black text-primary-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your construction needs and create a customized solution 
-              that perfectly fits your vision and budget.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact" className="btn-primary">
-                Get Free Quote
-              </a>
-              <a href="tel:+919586822668" className="btn-secondary text-primary-white border-primary-white hover:bg-primary-white hover:text-primary-black">
-                Call Now
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+             {/* CTA Section */}
+       <section className="py-20 relative bg-accent-gray text-primary-white">
+         {/* Background Pattern */}
+         <div className="absolute inset-0 opacity-10">
+           <div 
+             className="w-full h-full bg-cover bg-center"
+             style={{
+               backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+             }}
+           ></div>
+         </div>
+         
+         <div className="container-custom text-center relative z-10">
+           <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8 }}
+             viewport={{ once: true }}
+           >
+             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+               Ready to Start Your Project?
+             </h2>
+             <p className="text-lg mb-10 max-w-3xl mx-auto leading-relaxed text-primary-white/95">
+               Let's discuss your construction needs and bring your vision to life. 
+               Our team is ready to help you create something extraordinary.
+             </p>
+             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                               <a href="/contact" className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg transition-all duration-300 bg-white text-accent-gray hover:bg-gray-100">
+                  <FileText className="mr-2 w-5 h-5" />
+                  Estimate Now
+                </a>
+               <a href="tel:+919586822668" className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-lg border-2 transition-all duration-300 border-white text-white hover:bg-white hover:text-accent-gray">
+                 <Phone className="mr-2 w-5 h-5" />
+                 Call Now
+               </a>
+             </div>
+           </motion.div>
+         </div>
+       </section>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, PhoneCall } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -74,10 +74,10 @@ const Navbar = () => {
             {/* Call Now Button */}
             <a 
               href="tel:+919586822668" 
-              className="hidden md:flex items-center gap-2 btn-primary text-sm px-4 py-2"
+              className="hidden md:flex items-center justify-center p-2 text-primary-dark hover:text-accent-gray transition-all duration-300"
+              aria-label="Call Now"
             >
-              <Phone className="w-4 h-4" />
-              Call Now
+              <PhoneCall className="w-6 h-6" />
             </a>
 
             <button
@@ -116,10 +116,10 @@ const Navbar = () => {
             {/* Mobile Call Now Button */}
             <a 
               href="tel:+919586822668" 
-              className="flex items-center gap-2 btn-primary mx-4 mt-4"
+              className="flex items-center justify-center p-2 text-primary-dark hover:text-accent-gray transition-all duration-300 mx-4 mt-4"
+              aria-label="Call Now"
             >
-              <Phone className="w-4 h-4" />
-              Call Now
+              <PhoneCall className="w-6 h-6" />
             </a>
           </div>
         </div>
