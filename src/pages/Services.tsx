@@ -9,7 +9,6 @@ import {
   Shield,
   Clock,
   CheckCircle,
-  ArrowRight,
   FileText,
   Phone
 } from 'lucide-react'
