@@ -71,7 +71,7 @@ const Navbar = () => {
 
           {/* Call Now & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-            {/* Call Now Button */}
+            {/* Call Now Button - Desktop */}
             <a 
               href="tel:+919586822668" 
               className="hidden md:flex items-center justify-center p-2 text-primary-dark hover:text-accent-gray transition-all duration-300"
@@ -80,48 +80,34 @@ const Navbar = () => {
               <PhoneCall className="w-6 h-6" />
             </a>
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-300"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="w-5 h-5 text-primary-dark" />
-              ) : (
-                <Menu className="w-5 h-5 text-primary-dark" />
-              )}
-            </button>
+            {/* Mobile Call Button & Menu Button */}
+            <div className="flex items-center space-x-2 lg:hidden">
+              <a 
+                href="tel:+919586822668" 
+                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-300"
+                aria-label="Call Now"
+              >
+                <PhoneCall className="w-5 h-5 text-primary-dark" />
+              </a>
+              
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-300"
+                aria-label="Toggle menu"
+              >
+                {isOpen ? (
+                  <X className="w-5 h-5 text-primary-dark" />
+                ) : (
+                  <Menu className="w-5 h-5 text-primary-dark" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <div className="py-4 space-y-2 border-t border-gray-200">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg font-heading font-medium transition-colors duration-300 ${
-                  isActive(link.path)
-                    ? 'bg-accent-gray text-primary-white'
-                    : 'text-primary-dark hover:bg-gray-100'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            {/* Mobile Call Now Button */}
-            <a 
-              href="tel:+919586822668" 
-              className="flex items-center justify-center p-2 text-primary-dark hover:text-accent-gray transition-all duration-300 mx-4 mt-4"
-              aria-label="Call Now"
-            >
-              <PhoneCall className="w-6 h-6" />
-            </a>
-          </div>
+        {/* Mobile Navigation - Hidden */}
+        <div className="hidden">
+          {/* Mobile navigation menu is now hidden */}
         </div>
       </div>
     </nav>
