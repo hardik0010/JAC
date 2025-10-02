@@ -4,8 +4,8 @@ const config = {
     FRONTEND_URL: 'http://localhost:3000',
   },
   production: {
-    API_URL: '/api', // This will be relative to your domain
-    FRONTEND_URL: 'https://jayambeconstruction.com', // Replace with your actual domain
+    API_URL: 'https://jay-ambe-construction-api.onrender.com/api',
+    FRONTEND_URL: 'https://your-domain-will-go-here.com',
   }
 };
 
