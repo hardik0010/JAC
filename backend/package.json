@@ -23,7 +23,9 @@
     "cloudinary": "^1.40.0",
     "express-rate-limit": "^6.10.0",
     "helmet": "^7.0.0",
-    "express-validator": "^7.0.1"
+    "express-validator": "^7.0.1",
+    "winston": "^3.10.0",
+    "compression": "^1.7.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
