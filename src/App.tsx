@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import ErrorBoundary from './components/ErrorBoundary'
+import './utils/keepAlive' // Keep backend awake
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'

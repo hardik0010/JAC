@@ -127,7 +127,7 @@ const About = () => {
         </div>
       </section>
 
-             {/* Mission & Vision */}
+      {/* Mission & Vision */}
        <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -169,11 +169,11 @@ const About = () => {
         </div>
       </section>
 
-              {/* Company Overview */}
+        {/* Company Overview */}
         <section className="py-12 lg:py-16 bg-gray-50">
         <div className="container-custom">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-             {/* Left Column - Company Description */}
+          {/* Left Column - Company Description */}
           <motion.div
                initial={{ opacity: 0, x: -30 }}
                whileInView={{ opacity: 1, x: 0 }}
@@ -190,7 +190,7 @@ const About = () => {
             </p>
           </motion.div>
 
-                           {/* Right Column - 3 Points Card */}
+            {/* Right Column - 3 Points Card */}
             <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}

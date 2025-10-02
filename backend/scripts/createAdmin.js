@@ -57,31 +57,27 @@ const Admin = mongoose.model('Admin', adminSchema);
 async function createAdmin() {
   try {
     // Connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI);
+    const mongoUri = process.env.MONGODB_URI || "mongodb+srv://InternHub_Hardik:LtGNpooHIpdtjBMa@cluster0.7kam1.mongodb.net/globetrotter?retryWrites=true&w=majority&appName=Cluster0";
+    await mongoose.connect(mongoUri);
     console.log('Connected to MongoDB');
 
-    // Check if admin already exists
-    const existingAdmin = await Admin.findOne({ username: 'admin' });
-    if (existingAdmin) {
-      console.log('Admin user already exists!');
-      console.log('Username: admin');
-      console.log('Email:', existingAdmin.email);
-      console.log('Role:', existingAdmin.role);
-      process.exit(0);
-    }
+    // Delete existing admin if exists (to create fresh one)
+    await Admin.deleteOne({ username: 'admin' });
+    console.log('Removed existing admin user if it existed');
 
-    // Create new admin
+    // Create new admin with fresh password
+    const newPassword = 'NewAdmin2024!@#';
     const admin = new Admin({
       username: 'admin',
       email: 'admin@jayambeconstruction.com',
-      password: process.env.ADMIN_PASSWORD || 'ChangeMe123!@#',
+      password: newPassword,
       role: 'super-admin'
     });
 
     await admin.save();
     console.log('✅ Admin user created successfully!');
     console.log('Username: admin');
-    console.log('Password: [CHANGE_AFTER_FIRST_LOGIN]');
+    console.log('Password: NewAdmin2024!@#');
     console.log('Email: admin@jayambeconstruction.com');
     console.log('Role: super-admin');
     console.log('\n🔐 Please change the password after first login!');
