@@ -1,22 +1,30 @@
 const path = require('path');
 const dotenv = require('dotenv');
-const envConfig = require('./config/env');
 
-// Load environment variables from env.js as defaults
-Object.keys(envConfig).forEach(key => {
-    if (!process.env[key]) {
-        process.env[key] = envConfig[key];
-    }
-});
+// Load environment variables from .env file (development only)
+if (process.env.NODE_ENV !== 'production') {
+  const envPath = path.resolve(__dirname, '.env');
+  console.log('Loading .env file from:', envPath);
+  
+  const result = dotenv.config({ path: envPath });
+  
+  if (result.error) {
+    console.log('No .env file found, using environment variables');
+  }
+}
 
-// Load environment variables
-const envPath = path.resolve(__dirname, '.env');
-console.log('Loading .env file from:', envPath);
+// Validate required environment variables
+const requiredEnvVars = [
+  'MONGODB_URI',
+  'JWT_SECRET',
+  'CLOUDINARY_CLOUD_NAME',
+  'CLOUDINARY_API_KEY',
+  'CLOUDINARY_API_SECRET'
+];
 
-const result = dotenv.config({ path: envPath });
-
-if (result.error) {
-  console.error('Error loading .env file:', result.error);
+const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+if (missingVars.length > 0) {
+  console.error('Missing required environment variables:', missingVars.join(', '));
   process.exit(1);
 }
 
