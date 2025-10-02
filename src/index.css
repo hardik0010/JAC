@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Cabin:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border-gray;
+  }
+  
+  body {
+    @apply bg-primary-white text-text-dark font-body transition-colors duration-300;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-black text-primary-white font-body font-semibold px-6 py-3 rounded-lg hover:bg-accent-dark hover:border-accent-dark transition-all duration-300 shadow-medium hover:shadow-strong transform hover:-translate-y-1 border border-primary-black;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border border-border-gray text-primary-dark font-body font-semibold px-6 py-3 rounded-lg hover:bg-light-gray hover:border-accent-gray transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply bg-primary-dark text-primary-white border border-primary-dark font-body font-semibold px-6 py-3 rounded-lg hover:bg-[#2a2b2b] transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-white {
+    @apply bg-primary-white text-primary-dark border border-primary-white font-body font-semibold px-6 py-3 rounded-lg hover:bg-light-gray transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-outline-white {
+    @apply bg-transparent text-primary-white border border-primary-white font-body font-semibold px-6 py-3 rounded-lg hover:bg-primary-white hover:text-primary-black transition-all duration-300;
+  }
+  
+  .card {
+    @apply bg-primary-white rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 border border-gray-100;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-gray to-accent-light bg-clip-text text-transparent;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(74, 85, 104, 0.1) 0%, rgba(21, 22, 22, 0.05) 100%);
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(233, 236, 239, 0.5);
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #4A5568;
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #2D3748;
+  }
+}
