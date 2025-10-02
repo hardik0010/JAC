@@ -33,15 +33,6 @@ console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Present (length: ' + proc
 console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME || 'Not found');
 console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Present' : 'Not found');
 
-// Verify required environment variables
-const requiredEnvVars = ['MONGODB_URI', 'CLOUDINARY_CLOUD_NAME', 'JWT_SECRET'];
-const missingEnvVars = requiredEnvVars.filter(env => !process.env[env]);
-
-if (missingEnvVars.length > 0) {
-  console.error('Missing required environment variables:', missingEnvVars);
-  process.exit(1);
-}
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -57,18 +48,11 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   transports: [
+    new winston.transports.Console(),
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' })
   ]
 });
-
-// Debug environment variables
-console.log('=== ENVIRONMENT DEBUG ===');
-console.log('Current working directory:', process.cwd());
-console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET' : 'NOT SET');
-console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? 'SET' : 'NOT SET');
-console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'SET' : 'NOT SET');
-console.log('========================');
 
 const connectDB = require('./config/db');
 
@@ -90,7 +74,7 @@ app.use(helmet());
 // Rate limiting - more lenient for development
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10000, // Increased limit for development
+  max: process.env.NODE_ENV === 'production' ? 100 : 10000,
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -102,7 +86,11 @@ app.use(compression());
 
 // CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', process.env.FRONTEND_URL || 'http://localhost:3000'],
+  origin: [
+    'http://localhost:3000', 
+    'http://localhost:3001', 
+    process.env.FRONTEND_URL || 'http://localhost:3000'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -181,23 +169,9 @@ app.use('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Try to start server with fallback ports if main port is in use
-const startServer = (port) => {
-  try {
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-      console.log('MongoDB Connected successfully');
-    }).on('error', (err) => {
-      if (err.code === 'EADDRINUSE') {
-        console.log(`Port ${port} is busy, trying ${port + 1}`);
-        startServer(port + 1);
-      } else {
-        console.error('Server error:', err);
-      }
-    });
-  } catch (err) {
-    console.error('Failed to start server:', err);
-  }
-};
-
-startServer(PORT);
+// Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+  console.log(`📊 API Status: http://localhost:${PORT}/api/status`);
+});
