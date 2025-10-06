@@ -862,6 +862,85 @@ const Admin = () => {
     }));
   };
 
+  // Helper function for aspect ratio optimization
+  const optimizeImageAspectRatio = (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      img.onload = () => {
+        try {
+          // Set consistent aspect ratio for project cards (16:9)
+          const targetAspectRatio = 16 / 9;
+          const imageAspectRatio = img.width / img.height;
+          
+          let { width, height } = img;
+          
+          // Resize to fit within maxWidth while maintaining aspect ratio
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          
+          // Crop to target aspect ratio if needed
+          if (imageAspectRatio > targetAspectRatio) {
+            // Image is wider than target - crop width
+            const cropWidth = height * targetAspectRatio;
+            const cropX = (width - cropWidth) / 2;
+            width = cropWidth;
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw cropped image
+            ctx?.drawImage(img, cropX, 0, width, height, 0, 0, width, height);
+          } else if (imageAspectRatio < targetAspectRatio) {
+            // Image is taller than target - crop height
+            const cropHeight = width / targetAspectRatio;
+            const cropY = (height - cropHeight) / 2;
+            height = cropHeight;
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw cropped image
+            ctx?.drawImage(img, 0, cropY, width, height, 0, 0, width, height);
+          } else {
+            // Perfect aspect ratio - just resize
+            canvas.width = width;
+            canvas.height = height;
+            ctx?.drawImage(img, 0, 0, width, height);
+          }
+          
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const optimizedFile = new File([blob], file.name, {
+                  type: 'image/jpeg',
+                  lastModified: Date.now(),
+                });
+                resolve(optimizedFile);
+              } else {
+                resolve(file);
+              }
+            },
+            'image/jpeg',
+            quality
+          );
+        } catch (error) {
+          reject(error);
+        }
+      };
+      
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
+      };
+      
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
   // Image optimization utility to reduce file size before upload
   const optimizeImage = async (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
     // Check if it's a HEIC/HEIF file
@@ -890,7 +969,9 @@ const Admin = () => {
           });
           
           console.log('HEIC file converted to JPEG:', convertedFile.name, 'Size:', (convertedFile.size / 1024 / 1024).toFixed(2), 'MB');
-          return convertedFile;
+          
+          // Now apply the same aspect ratio optimization as regular images
+          return await optimizeImageAspectRatio(convertedFile, maxWidth, quality);
         })();
         
         // Add 30-second timeout
@@ -913,18 +994,47 @@ const Admin = () => {
       
       img.onload = () => {
         try {
-          // Calculate new dimensions maintaining aspect ratio
+          // Set consistent aspect ratio for project cards (16:9 or 4:3)
+          const targetAspectRatio = 16 / 9; // Landscape orientation for project cards
+          const imageAspectRatio = img.width / img.height;
+          
           let { width, height } = img;
+          
+          // Resize to fit within maxWidth while maintaining aspect ratio
           if (width > maxWidth) {
             height = (height * maxWidth) / width;
             width = maxWidth;
           }
           
-          canvas.width = width;
-          canvas.height = height;
-          
-          // Draw and compress image
-          ctx?.drawImage(img, 0, 0, width, height);
+          // Crop to target aspect ratio if needed
+          if (imageAspectRatio > targetAspectRatio) {
+            // Image is wider than target - crop width
+            const cropWidth = height * targetAspectRatio;
+            const cropX = (width - cropWidth) / 2;
+            width = cropWidth;
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw cropped image
+            ctx?.drawImage(img, cropX, 0, width, height, 0, 0, width, height);
+          } else if (imageAspectRatio < targetAspectRatio) {
+            // Image is taller than target - crop height
+            const cropHeight = width / targetAspectRatio;
+            const cropY = (height - cropHeight) / 2;
+            height = cropHeight;
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw cropped image
+            ctx?.drawImage(img, 0, cropY, width, height, 0, 0, width, height);
+          } else {
+            // Perfect aspect ratio - just resize
+            canvas.width = width;
+            canvas.height = height;
+            ctx?.drawImage(img, 0, 0, width, height);
+          }
           
           canvas.toBlob(
             (blob) => {
@@ -933,6 +1043,7 @@ const Admin = () => {
                   type: 'image/jpeg',
                   lastModified: Date.now(),
                 });
+                console.log('Image optimized:', optimizedFile.name, 'Size:', (optimizedFile.size / 1024 / 1024).toFixed(2), 'MB', 'Dimensions:', `${Math.round(width)}x${Math.round(height)}`);
                 resolve(optimizedFile);
               } else {
                 resolve(file); // Fallback to original if optimization fails

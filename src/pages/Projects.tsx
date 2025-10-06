@@ -617,7 +617,7 @@ const ProjectImageCarousel = ({ images }: { images: ProjectImage[] }) => {
       <img
         src={images[0].url}
         alt={images[0].caption || 'Project Image'}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
       />
     );
   }
@@ -628,7 +628,7 @@ const ProjectImageCarousel = ({ images }: { images: ProjectImage[] }) => {
       <img
         src={images[currentImageIndex].url}
         alt={images[currentImageIndex].caption || 'Project Image'}
-        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+        className="w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-500"
       />
       
       {/* Image Caption - Only show for non-main images */}
