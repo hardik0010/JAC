@@ -16,10 +16,6 @@ const Footer = () => {
       { name: 'Our Projects', path: '/projects' },
       { name: 'Gallery', path: '/gallery' },
       { name: 'Contact', path: '/contact' },
-    ],
-    legal: [
-      { name: 'Privacy Policy', path: '/privacy-policy' },
-      { name: 'Terms of Service', path: '/terms-of-service' },
     ]
   }
 
@@ -107,21 +103,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Legal Links */}
-          <div>
-            <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Legal</h4>
-            <div className="flex flex-wrap gap-4">
-              {footerLinks.legal.map((link) => (
-                <Link 
-                  key={link.name}
-                  to={link.path}
-                  className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Desktop Layout - All sections */}
@@ -191,23 +172,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.path}
-                    className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact Info */}
           <div>
                          <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Contact Info</h4>
@@ -258,13 +222,13 @@ const Footer = () => {
               © {currentYear} Jay Ambe Construction. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/contact" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
                 Privacy Policy
               </Link>
               <Link to="/admin" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
                 Admin Portal
               </Link>
-              <Link to="/contact" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-primary-white text-sm transition-colors duration-300">
                 Terms of Service
               </Link>
             </div>
