@@ -4,18 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
-    {
-      name: 'remove-console',
-      transform(code, id) {
-        if (process.env.NODE_ENV === 'production' && id.endsWith('.tsx')) {
-          return {
-            code: code.replace(/console\.(log|debug|info)\((.*?)\);?/g, ''),
-            map: null
-          }
-        }
-      }
-    }
+    react()
   ],
   server: {
     port: 3000,

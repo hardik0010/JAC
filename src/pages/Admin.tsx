@@ -518,7 +518,7 @@ const Admin = () => {
         console.error('Project deletion failed:', error);
         alert('Failed to delete project. Please try again.');
       } finally {
-        setIsDeleting(null);
+        setIsDeleting('');
       }
     }
   };
