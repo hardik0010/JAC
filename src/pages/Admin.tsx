@@ -871,8 +871,8 @@ const Admin = () => {
       
       img.onload = () => {
         try {
-          // Set consistent aspect ratio for project cards (16:9)
-          const targetAspectRatio = 16 / 9;
+          // Use a more flexible aspect ratio (4:3 instead of 16:9) to avoid aggressive cropping
+          const targetAspectRatio = 4 / 3; // Less aggressive than 16:9
           const imageAspectRatio = img.width / img.height;
           
           let { width, height } = img;
@@ -883,31 +883,41 @@ const Admin = () => {
             width = maxWidth;
           }
           
-          // Crop to target aspect ratio if needed
-          if (imageAspectRatio > targetAspectRatio) {
-            // Image is wider than target - crop width
-            const cropWidth = height * targetAspectRatio;
-            const cropX = (width - cropWidth) / 2;
-            width = cropWidth;
-            
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Draw cropped image
-            ctx?.drawImage(img, cropX, 0, width, height, 0, 0, width, height);
-          } else if (imageAspectRatio < targetAspectRatio) {
-            // Image is taller than target - crop height
-            const cropHeight = width / targetAspectRatio;
-            const cropY = (height - cropHeight) / 2;
-            height = cropHeight;
-            
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Draw cropped image
-            ctx?.drawImage(img, 0, cropY, width, height, 0, 0, width, height);
+          // Only crop if the aspect ratio is very different (more than 20% difference)
+          const aspectRatioDifference = Math.abs(imageAspectRatio - targetAspectRatio) / targetAspectRatio;
+          
+          if (aspectRatioDifference > 0.2) {
+            // Only crop if aspect ratio is significantly different
+            if (imageAspectRatio > targetAspectRatio) {
+              // Image is wider than target - crop width slightly
+              const cropWidth = height * targetAspectRatio;
+              const cropX = (width - cropWidth) / 2;
+              width = cropWidth;
+              
+              canvas.width = width;
+              canvas.height = height;
+              
+              // Draw cropped image
+              ctx?.drawImage(img, cropX, 0, width, height, 0, 0, width, height);
+            } else if (imageAspectRatio < targetAspectRatio) {
+              // Image is taller than target - crop height slightly
+              const cropHeight = width / targetAspectRatio;
+              const cropY = (height - cropHeight) / 2;
+              height = cropHeight;
+              
+              canvas.width = width;
+              canvas.height = height;
+              
+              // Draw cropped image
+              ctx?.drawImage(img, 0, cropY, width, height, 0, 0, width, height);
+            } else {
+              // Close enough to target ratio - just resize
+              canvas.width = width;
+              canvas.height = height;
+              ctx?.drawImage(img, 0, 0, width, height);
+            }
           } else {
-            // Perfect aspect ratio - just resize
+            // Aspect ratio is close enough - just resize without cropping
             canvas.width = width;
             canvas.height = height;
             ctx?.drawImage(img, 0, 0, width, height);
@@ -920,6 +930,7 @@ const Admin = () => {
                   type: 'image/jpeg',
                   lastModified: Date.now(),
                 });
+                console.log('Image optimized (minimal cropping):', optimizedFile.name, 'Size:', (optimizedFile.size / 1024 / 1024).toFixed(2), 'MB', 'Dimensions:', `${Math.round(width)}x${Math.round(height)}`);
                 resolve(optimizedFile);
               } else {
                 resolve(file);
@@ -941,52 +952,8 @@ const Admin = () => {
     });
   };
 
-  // Image optimization utility to reduce file size before upload
-  const optimizeImage = async (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
-    // Check if it's a HEIC/HEIF file
-    const isHeic = file.type === 'image/heic' || 
-                   file.type === 'image/heif' || 
-                   file.name.toLowerCase().endsWith('.heic') || 
-                   file.name.toLowerCase().endsWith('.heif');
-
-    if (isHeic) {
-      try {
-        console.log('Converting HEIC file:', file.name);
-        
-        // Add timeout to prevent hanging
-        const conversionPromise = (async () => {
-          const heic2any = (await import('heic2any')).default;
-          const convertedBlob = await heic2any({
-            blob: file,
-            toType: 'image/jpeg',
-            quality: 0.7 // Reduce quality to decrease file size
-          }) as Blob;
-          
-          // Create a new File object with JPEG type
-          const convertedFile = new File([convertedBlob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), {
-            type: 'image/jpeg',
-            lastModified: file.lastModified
-          });
-          
-          console.log('HEIC file converted to JPEG:', convertedFile.name, 'Size:', (convertedFile.size / 1024 / 1024).toFixed(2), 'MB');
-          
-          // Now apply the same aspect ratio optimization as regular images
-          return await optimizeImageAspectRatio(convertedFile, maxWidth, quality);
-        })();
-        
-        // Add 30-second timeout
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('HEIC conversion timed out after 30 seconds')), 30000);
-        });
-        
-        return await Promise.race([conversionPromise, timeoutPromise]) as File;
-      } catch (error) {
-        console.error('HEIC conversion failed:', error);
-        throw new Error(`Failed to convert HEIC image: ${error instanceof Error ? error.message : 'Unknown error'}`);
-      }
-    }
-
-    // For regular images, use canvas optimization
+  // Simple resize without cropping - for when cropping is too aggressive
+  const simpleResizeImage = (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
@@ -994,47 +961,17 @@ const Admin = () => {
       
       img.onload = () => {
         try {
-          // Set consistent aspect ratio for project cards (16:9 or 4:3)
-          const targetAspectRatio = 16 / 9; // Landscape orientation for project cards
-          const imageAspectRatio = img.width / img.height;
-          
           let { width, height } = img;
           
-          // Resize to fit within maxWidth while maintaining aspect ratio
+          // Just resize to fit within maxWidth while maintaining aspect ratio
           if (width > maxWidth) {
             height = (height * maxWidth) / width;
             width = maxWidth;
           }
           
-          // Crop to target aspect ratio if needed
-          if (imageAspectRatio > targetAspectRatio) {
-            // Image is wider than target - crop width
-            const cropWidth = height * targetAspectRatio;
-            const cropX = (width - cropWidth) / 2;
-            width = cropWidth;
-            
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Draw cropped image
-            ctx?.drawImage(img, cropX, 0, width, height, 0, 0, width, height);
-          } else if (imageAspectRatio < targetAspectRatio) {
-            // Image is taller than target - crop height
-            const cropHeight = width / targetAspectRatio;
-            const cropY = (height - cropHeight) / 2;
-            height = cropHeight;
-            
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Draw cropped image
-            ctx?.drawImage(img, 0, cropY, width, height, 0, 0, width, height);
-          } else {
-            // Perfect aspect ratio - just resize
-            canvas.width = width;
-            canvas.height = height;
-            ctx?.drawImage(img, 0, 0, width, height);
-          }
+          canvas.width = width;
+          canvas.height = height;
+          ctx?.drawImage(img, 0, 0, width, height);
           
           canvas.toBlob(
             (blob) => {
@@ -1043,10 +980,10 @@ const Admin = () => {
                   type: 'image/jpeg',
                   lastModified: Date.now(),
                 });
-                console.log('Image optimized:', optimizedFile.name, 'Size:', (optimizedFile.size / 1024 / 1024).toFixed(2), 'MB', 'Dimensions:', `${Math.round(width)}x${Math.round(height)}`);
+                console.log('Image resized (no cropping):', optimizedFile.name, 'Size:', (optimizedFile.size / 1024 / 1024).toFixed(2), 'MB', 'Dimensions:', `${Math.round(width)}x${Math.round(height)}`);
                 resolve(optimizedFile);
               } else {
-                resolve(file); // Fallback to original if optimization fails
+                resolve(file);
               }
             },
             'image/jpeg',
@@ -1065,11 +1002,100 @@ const Admin = () => {
     });
   };
 
+  // Robust HEIC conversion with multiple fallback methods
+  const convertHeicRobust = async (file: File): Promise<File> => {
+    console.log('Starting robust HEIC conversion for:', file.name, 'Size:', (file.size / 1024 / 1024).toFixed(2), 'MB');
+    
+    // Method 1: Try heic2any with very low quality for large files
+    try {
+      const heic2any = (await import('heic2any')).default;
+      
+      // Use very low quality for large files to reduce memory usage
+      const quality = file.size > 2 * 1024 * 1024 ? 0.2 : 0.4;
+      
+      console.log('Trying heic2any conversion with quality:', quality);
+      
+      const convertedBlob = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: quality
+      }) as Blob;
+      
+      const convertedFile = new File([convertedBlob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), {
+        type: 'image/jpeg',
+        lastModified: file.lastModified
+      });
+      
+      console.log('heic2any conversion successful:', convertedFile.name, 'Size:', (convertedFile.size / 1024 / 1024).toFixed(2), 'MB');
+      return convertedFile;
+      
+    } catch (error) {
+      console.warn('heic2any conversion failed, trying alternative method:', error);
+      
+      // Method 2: Try with browser-image-compression as fallback
+      try {
+        const imageCompression = (await import('browser-image-compression')).default;
+        
+        console.log('Trying browser-image-compression conversion');
+        
+        const compressedFile = await imageCompression(file, {
+          maxSizeMB: 1, // Compress to max 1MB
+          maxWidthOrHeight: 1200,
+          useWebWorker: true,
+          fileType: 'image/jpeg'
+        });
+        
+        console.log('browser-image-compression conversion successful:', compressedFile.name, 'Size:', (compressedFile.size / 1024 / 1024).toFixed(2), 'MB');
+        return compressedFile;
+        
+      } catch (error2) {
+        console.log('browser-image-compression also failed, will use server-side processing:', error2);
+        
+        // Method 3: Last resort - try to upload as-is and let server handle it
+        console.log('All client-side conversion methods failed, will try server-side conversion');
+        throw new Error('Server-side processing required');
+      }
+    }
+  };
+
+  // Image optimization utility to reduce file size before upload
+  const optimizeImage = async (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
+    // Check if it's a HEIC/HEIF file
+    const isHeic = file.type === 'image/heic' || 
+                   file.type === 'image/heif' || 
+                   file.name.toLowerCase().endsWith('.heic') || 
+                   file.name.toLowerCase().endsWith('.heif');
+
+    if (isHeic) {
+      try {
+        // Use the robust conversion method
+        const convertedFile = await convertHeicRobust(file);
+        // Apply simple resize after conversion
+        return await simpleResizeImage(convertedFile, maxWidth, quality);
+      } catch (error) {
+        console.log('Client-side HEIC conversion failed, will process on server:', error);
+        
+        // Silently return original file for server-side processing
+        // No error message shown to user - completely seamless
+        return file;
+      }
+    }
+
+    // For regular images, use simple resize without cropping
+    return simpleResizeImage(file, maxWidth, quality);
+  };
+
   // Handle main image upload
   const handleMainImageUpload = async (file: File) => {
     setIsUploadingImage(true);
     try {
-      console.log('Starting image optimization for:', file.name);
+      console.log('Starting image optimization for:', file.name, 'Size:', (file.size / 1024 / 1024).toFixed(2), 'MB');
+      
+      // Check file size and log for debugging (no user warning)
+      if (file.size > 4 * 1024 * 1024) { // 4MB
+        console.log(`Large image detected: ${(file.size / 1024 / 1024).toFixed(2)}MB - processing may take longer`);
+      }
+      
       const optimizedFile = await optimizeImage(file);
       console.log('Image optimization completed:', optimizedFile.name);
       setProjectForm(prev => ({
@@ -1078,8 +1104,8 @@ const Admin = () => {
       }));
     } catch (error) {
       console.error('Image optimization failed:', error);
-      // Show user-friendly error message
-      alert(`Image processing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      // Show generic user-friendly message without technical details
+      alert(`Image processing failed. Please try again or use a different image.`);
       setProjectForm(prev => ({
         ...prev,
         mainImage: file
@@ -1098,18 +1124,24 @@ const Admin = () => {
       
       console.log(`Starting optimization for ${fileArray.length} images`);
       
+      // Check for large files and log for debugging (no user warning)
+      const largeFiles = fileArray.filter(file => file.size > 4 * 1024 * 1024);
+      if (largeFiles.length > 0) {
+        const largeFileNames = largeFiles.map(f => `${f.name} (${(f.size / 1024 / 1024).toFixed(2)}MB)`).join(', ');
+        console.log(`Large images detected: ${largeFileNames} - processing may take longer`);
+      }
+      
       // Optimize images before adding to form
       for (let i = 0; i < fileArray.length; i++) {
         const file = fileArray[i];
         try {
-          console.log(`Processing image ${i + 1}/${fileArray.length}:`, file.name);
+          console.log(`Processing image ${i + 1}/${fileArray.length}:`, file.name, 'Size:', (file.size / 1024 / 1024).toFixed(2), 'MB');
           const optimizedFile = await optimizeImage(file);
           optimizedFiles.push(optimizedFile);
           console.log(`Image ${i + 1} optimization completed`);
         } catch (error) {
           console.error(`Image ${i + 1} optimization failed:`, error);
-          // Show user-friendly error message for this specific image
-          alert(`Failed to process image "${file.name}": ${error instanceof Error ? error.message : 'Unknown error'}`);
+          // Silently use original file if optimization fails
           optimizedFiles.push(file); // Use original if optimization fails
         }
       }
@@ -1122,7 +1154,7 @@ const Admin = () => {
       }));
     } catch (error) {
       console.error('Image upload process failed:', error);
-      alert(`Image upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(`Image upload failed. Please try again.`);
     } finally {
       setIsUploadingImage(false);
     }

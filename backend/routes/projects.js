@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const convert = require('heic-convert');
 const Project = require('../models/Project');
 const auth = require('../middleware/auth');
 const router = express.Router();
@@ -14,11 +15,31 @@ cloudinary.config({
   secure: true
 });
 
+// Helper function to process HEIC files with heic-convert
+const processHeicWithConvert = async (buffer, filename) => {
+  try {
+    console.log('Processing HEIC file with heic-convert:', filename);
+    
+    // Convert HEIC to JPEG using heic-convert
+    const jpegBuffer = await convert({
+      buffer: buffer,
+      format: 'JPEG',
+      quality: 0.8
+    });
+    
+    console.log('HEIC conversion successful with heic-convert');
+    return jpegBuffer;
+  } catch (error) {
+    console.error('heic-convert processing failed:', error);
+    throw new Error('Failed to process HEIC file on server');
+  }
+};
+
 // Configure multer for memory storage
 const upload = multer({ 
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: 4 * 1024 * 1024 // 4MB limit
   },
   fileFilter: (req, file, cb) => {
     // Accept all image types including HEIC/HEIF
@@ -38,7 +59,7 @@ const upload = multer({
 const uploadProjectImages = multer({ 
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: 4 * 1024 * 1024 // 4MB limit
   },
   fileFilter: (req, file, cb) => {
     // Accept all image types including HEIC/HEIF
@@ -151,22 +172,32 @@ router.post('/', auth, uploadProjectImages, async (req, res) => {
         const file = req.files.mainImage[0];
         
         // Check file size before upload
-        if (file.size > 5 * 1024 * 1024) { // 5MB limit
-          return res.status(400).json({ message: 'Main image is too large. Maximum size is 5MB.' });
+        if (file.size > 4 * 1024 * 1024) { // 4MB limit
+          return res.status(400).json({ message: 'Image is too large. Maximum size is 4MB.' });
         }
 
         // Convert buffer to base64 for Cloudinary
         const buffer = file.buffer;
-        const base64String = buffer.toString('base64');
-        
-        // Handle HEIC/HEIF files by converting to JPEG
+        let processedBuffer = buffer;
         let mimeType = file.mimetype;
+        
+        // Handle HEIC/HEIF files by converting to JPEG using Sharp
         if (file.mimetype === 'image/heic' || file.mimetype === 'image/heif' ||
             file.originalname.toLowerCase().endsWith('.heic') ||
             file.originalname.toLowerCase().endsWith('.heif')) {
-          mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+          try {
+            console.log('Processing HEIC file on server:', file.originalname);
+            processedBuffer = await processHeicWithConvert(buffer, file.originalname);
+            mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+          } catch (error) {
+            console.error('Server-side HEIC processing failed:', error);
+            return res.status(400).json({ 
+              message: 'Unable to process this image. Please try a different image.' 
+            });
+          }
         }
         
+        const base64String = processedBuffer.toString('base64');
         const dataURI = `data:${mimeType};base64,${base64String}`;
 
         // Upload with retry logic
@@ -375,22 +406,32 @@ router.put('/:id', auth, uploadProjectImages, async (req, res) => {
         const file = req.files.mainImage[0];
         
         // Check file size before upload
-        if (file.size > 5 * 1024 * 1024) { // 5MB limit
-          return res.status(400).json({ message: 'Main image is too large. Maximum size is 5MB.' });
+        if (file.size > 4 * 1024 * 1024) { // 4MB limit
+          return res.status(400).json({ message: 'Image is too large. Maximum size is 4MB.' });
         }
 
         // Convert buffer to base64 for Cloudinary
         const buffer = file.buffer;
-        const base64String = buffer.toString('base64');
-        
-        // Handle HEIC/HEIF files by converting to JPEG
+        let processedBuffer = buffer;
         let mimeType = file.mimetype;
+        
+        // Handle HEIC/HEIF files by converting to JPEG using Sharp
         if (file.mimetype === 'image/heic' || file.mimetype === 'image/heif' ||
             file.originalname.toLowerCase().endsWith('.heic') ||
             file.originalname.toLowerCase().endsWith('.heif')) {
-          mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+          try {
+            console.log('Processing HEIC file on server:', file.originalname);
+            processedBuffer = await processHeicWithConvert(buffer, file.originalname);
+            mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+          } catch (error) {
+            console.error('Server-side HEIC processing failed:', error);
+            return res.status(400).json({ 
+              message: 'Unable to process this image. Please try a different image.' 
+            });
+          }
         }
         
+        const base64String = processedBuffer.toString('base64');
         const dataURI = `data:${mimeType};base64,${base64String}`;
 
         // Upload with retry logic

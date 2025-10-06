@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "browser-image-compression": "^2.0.2",
     "compression": "^1.8.1",
     "framer-motion": "^10.16.4",
     "heic2any": "^0.0.4",

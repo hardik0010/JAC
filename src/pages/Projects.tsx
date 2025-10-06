@@ -392,14 +392,15 @@ const Projects = () => {
                 return null
               }
               return (
-              <motion.div
-                key={project._id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white border border-gray-200 shadow-lg overflow-hidden group"
-              >
+              <Link to="/contact" className="block">
+                <motion.div
+                  key={project._id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white border border-gray-200 shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                >
                 <div className="relative h-64 overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <ProjectImageCarousel images={project.images} />
@@ -420,6 +421,7 @@ const Projects = () => {
                             rel="noopener noreferrer"
                             className="text-sm hover:underline cursor-pointer"
                             title="Click to open in Google Maps"
+                            onClick={(e) => e.stopPropagation()}
                           >
                             {project.location}
                           </a>
@@ -451,7 +453,10 @@ const Projects = () => {
                       <div>
                         <p>{project.projectDescription}</p>
                         <button
-                          onClick={() => toggleDescription(project._id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleDescription(project._id);
+                          }}
                           className="text-blue-600 hover:text-blue-800 text-xs font-medium mt-2"
                         >
                           Show Less
@@ -462,7 +467,10 @@ const Projects = () => {
                         <p>{truncateDescription(project.projectDescription)}</p>
                         {project.projectDescription.length > 100 && (
                           <button
-                            onClick={() => toggleDescription(project._id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleDescription(project._id);
+                            }}
                             className="text-blue-600 hover:text-blue-800 text-xs font-medium mt-2"
                           >
                             Read More
@@ -482,12 +490,14 @@ const Projects = () => {
                   <Link 
                     to="/contact" 
                     className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Contact for more info
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </div>
-              </motion.div>
+                </motion.div>
+              </Link>
               )
             }) : (
               <div className="col-span-full text-center py-12">
@@ -617,7 +627,8 @@ const ProjectImageCarousel = ({ images }: { images: ProjectImage[] }) => {
       <img
         src={images[0].url}
         alt={images[0].caption || 'Project Image'}
-        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+        style={{ objectPosition: 'center center' }}
       />
     );
   }
@@ -628,7 +639,8 @@ const ProjectImageCarousel = ({ images }: { images: ProjectImage[] }) => {
       <img
         src={images[currentImageIndex].url}
         alt={images[currentImageIndex].caption || 'Project Image'}
-        className="w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-500"
+        className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500"
+        style={{ objectPosition: 'center center' }}
       />
       
       {/* Image Caption - Only show for non-main images */}
