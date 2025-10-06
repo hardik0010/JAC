@@ -497,7 +497,7 @@ const Admin = () => {
     }
   };
 
-  // Handle project deletion
+  // Handle project deletion - RECREATED
   const handleDeleteProject = async (projectId: string) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
       setIsDeleting(projectId);
