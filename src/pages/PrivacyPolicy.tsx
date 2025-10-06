@@ -110,8 +110,11 @@ const PrivacyPolicy = () => {
               <div className="mt-4 text-gray-700">
                 <p><strong>Jay Ambe Construction</strong></p>
                 <p>Email: info@jayambeconstruction.com</p>
-                <p>Phone: [Your Phone Number]</p>
-                <p>Address: [Your Business Address]</p>
+                <p>Phone: +91 95868 22668</p>
+                <p>Address: 1304, 13TH FLOOR GANESH GLORY<br />
+                NEAR BSNL OFFICE, JAGATPUR-CHENPUR ROAD<br />
+                S.G.HIGHWAY, JAGATPUR<br />
+                AHMEDABAD-382481, GUJARAT</p>
               </div>
             </div>
           </div>
