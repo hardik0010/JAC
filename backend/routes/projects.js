@@ -21,10 +21,15 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024 // 5MB limit
   },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    // Accept all image types including HEIC/HEIF
+    if (file.mimetype.startsWith('image/') || 
+        file.mimetype === 'image/heic' || 
+        file.mimetype === 'image/heif' ||
+        file.originalname.toLowerCase().endsWith('.heic') ||
+        file.originalname.toLowerCase().endsWith('.heif')) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'), false);
+      cb(new Error('Only image files are allowed (including HEIC/HEIF)'), false);
     }
   }
 });
@@ -36,10 +41,15 @@ const uploadProjectImages = multer({
     fileSize: 5 * 1024 * 1024 // 5MB limit
   },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
+    // Accept all image types including HEIC/HEIF
+    if (file.mimetype.startsWith('image/') || 
+        file.mimetype === 'image/heic' || 
+        file.mimetype === 'image/heif' ||
+        file.originalname.toLowerCase().endsWith('.heic') ||
+        file.originalname.toLowerCase().endsWith('.heif')) {
       cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'), false);
+      cb(new Error('Only image files are allowed (including HEIC/HEIF)'), false);
     }
   }
 }).fields([
@@ -148,7 +158,16 @@ router.post('/', auth, uploadProjectImages, async (req, res) => {
         // Convert buffer to base64 for Cloudinary
         const buffer = file.buffer;
         const base64String = buffer.toString('base64');
-        const dataURI = `data:${file.mimetype};base64,${base64String}`;
+        
+        // Handle HEIC/HEIF files by converting to JPEG
+        let mimeType = file.mimetype;
+        if (file.mimetype === 'image/heic' || file.mimetype === 'image/heif' ||
+            file.originalname.toLowerCase().endsWith('.heic') ||
+            file.originalname.toLowerCase().endsWith('.heif')) {
+          mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+        }
+        
+        const dataURI = `data:${mimeType};base64,${base64String}`;
 
         // Upload with retry logic
         let result;
@@ -363,7 +382,16 @@ router.put('/:id', auth, uploadProjectImages, async (req, res) => {
         // Convert buffer to base64 for Cloudinary
         const buffer = file.buffer;
         const base64String = buffer.toString('base64');
-        const dataURI = `data:${file.mimetype};base64,${base64String}`;
+        
+        // Handle HEIC/HEIF files by converting to JPEG
+        let mimeType = file.mimetype;
+        if (file.mimetype === 'image/heic' || file.mimetype === 'image/heif' ||
+            file.originalname.toLowerCase().endsWith('.heic') ||
+            file.originalname.toLowerCase().endsWith('.heif')) {
+          mimeType = 'image/jpeg'; // Convert HEIC to JPEG for Cloudinary
+        }
+        
+        const dataURI = `data:${mimeType};base64,${base64String}`;
 
         // Upload with retry logic
         let result;

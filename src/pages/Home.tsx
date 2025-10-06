@@ -43,7 +43,7 @@ const Home = () => {
     { number: '100+', label: 'High Rise Towers', icon: Award },
     { number: '25+', label: 'Years Experience', icon: Building2 },
     { number: '50+', label: 'Team Members', icon: Users },
-    { number: '75,00,000+', label: 'Sq. Ft. Delivered', icon: Award }
+    { number: '75L+', label: 'Sq. Ft. Delivered', icon: Award }
   ]
 
 
@@ -106,7 +106,7 @@ const Home = () => {
         </div>
         
         <div className="container-custom relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-15">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-15">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -114,15 +114,15 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="text-center px-2"
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-accent-gray flex items-center justify-center">
-                  <stat.icon className="w-6 h-6 text-primary-white" />
+                <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6 rounded-xl bg-accent-gray flex items-center justify-center">
+                  <stat.icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary-white" />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-accent-gray mb-2 font-heading">
+                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-accent-gray mb-2 font-heading break-words">
                   {stat.number}
                 </div>
-                <div className="font-medium text-gray-300">
+                <div className="text-sm lg:text-base font-medium text-gray-300 leading-tight">
                   {stat.label}
                 </div>
               </motion.div>

@@ -114,7 +114,7 @@ const About = () => {
               className="relative"
             >
               <img
-                src="src/assets/images/jay-ambe-construction-crane.jpg"
+                src="/images/jay-ambe-construction-crane.jpg"
                 alt="Jay Ambe Construction Crane - Our Construction Site"
                 className="rounded-xl shadow-strong"
               />

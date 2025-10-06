@@ -260,7 +260,11 @@ const Admin = () => {
     e.preventDefault();
     setLoginError('');
     
+    // Prevent multiple simultaneous login attempts
+    if (isLoading) return;
+    
     try {
+      setIsLoading(true);
       const response = await fetch(`${API_BASE}/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -274,22 +278,47 @@ const Admin = () => {
         setToken(data.token);
         setAdmin(data.admin);
         setIsAuthenticated(true);
-        fetchDashboardData();
+        await fetchDashboardData();
+        console.log('Admin logged in successfully');
       } else {
-        setLoginError(data.message);
+        setLoginError(data.message || 'Login failed. Please check your credentials.');
       }
     } catch (error) {
+      console.error('Login error:', error);
       setLoginError('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   // Handle logout
   const handleLogout = () => {
+    // Clear all authentication data
     localStorage.removeItem('adminToken');
     setToken(null);
     setAdmin(null);
     setIsAuthenticated(false);
     setActiveTab('dashboard');
+    
+    // Reset all form states
+    setLoginForm({ username: '', password: '' });
+    setLoginError('');
+    setPasswordChangeForm({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    });
+    setPasswordChangeError('');
+    setPasswordChangeSuccess('');
+    
+    // Clear all data
+    setProjects([]);
+    setGallery([]);
+    setServices([]);
+    setTeam([]);
+    setStats(null);
+    
+    console.log('Admin logged out successfully');
   };
 
   // Handle password change
@@ -1005,9 +1034,17 @@ const Admin = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  disabled={isLoading}
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Sign in
+                  {isLoading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Signing in...
+                    </>
+                  ) : (
+                    'Sign in'
+                  )}
                 </button>
               </div>
             </form>
@@ -1022,26 +1059,28 @@ const Admin = () => {
       {/* Header */}
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 sm:py-6 space-y-4 sm:space-y-0">
             <div className="flex items-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <h1 className="ml-3 text-2xl font-bold text-gray-900">Jay Ambe Construction - Admin Portal</h1>
+              <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
+              <h1 className="ml-2 sm:ml-3 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">Jay Ambe Construction - Admin Portal</h1>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
               <button
                 onClick={() => navigate('/')}
-                className="text-gray-600 hover:text-gray-900 text-sm font-medium px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
+                className="w-full sm:w-auto text-gray-600 hover:text-gray-900 text-sm font-medium px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
               >
                 ← Back to Site
               </button>
-              <span className="text-sm text-gray-500">Welcome, {admin?.username}</span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </button>
+              <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto">
+                <span className="text-xs sm:text-sm text-gray-500">Welcome, {admin?.username}</span>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 w-full sm:w-auto justify-center"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1050,7 +1089,7 @@ const Admin = () => {
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {/* Navigation Tabs */}
         <div className="border-b border-gray-200 mb-6">
-          <nav className="-mb-px flex space-x-8">
+          <nav className="-mb-px flex flex-wrap space-x-2 sm:space-x-8">
             {[
               { id: 'dashboard', name: 'Dashboard', icon: BarChart3 },
               { id: 'projects', name: 'Projects', icon: Building2 },
@@ -1062,14 +1101,15 @@ const Admin = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center ${
+                className={`py-2 px-1 border-b-2 font-medium text-xs sm:text-sm flex items-center whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                <tab.icon className="h-4 w-4 mr-2" />
-                {tab.name}
+                <tab.icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">{tab.name}</span>
+                <span className="sm:hidden">{tab.name.substring(0, 3)}</span>
               </button>
             ))}
           </nav>
@@ -1204,15 +1244,15 @@ const Admin = () => {
         {/* Projects Tab */}
         {activeTab === 'projects' && (
           <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">Projects Management</h2>
-              <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Projects Management</h2>
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
                 <button
                   onClick={() => {
                     setCurrentPage(1);
                     fetchDashboardData();
                   }}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Refresh
@@ -1237,14 +1277,14 @@ const Admin = () => {
                     });
                     setShowProjectForm(true);
                   }}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Project
                 </button>
                 <button
                   onClick={handleExportCSV}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Export CSV
