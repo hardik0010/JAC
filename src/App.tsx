@@ -13,6 +13,8 @@ import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
 import Test from './pages/Test'
 import Admin from './pages/Admin'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 
 function App() {
   const location = useLocation()
@@ -63,6 +65,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/test" element={<Test />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </ErrorBoundary>
       </main>

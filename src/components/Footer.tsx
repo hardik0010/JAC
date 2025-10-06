@@ -16,6 +16,10 @@ const Footer = () => {
       { name: 'Our Projects', path: '/projects' },
       { name: 'Gallery', path: '/gallery' },
       { name: 'Contact', path: '/contact' },
+    ],
+    legal: [
+      { name: 'Privacy Policy', path: '/privacy-policy' },
+      { name: 'Terms of Service', path: '/terms-of-service' },
     ]
   }
 
@@ -102,6 +106,22 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
+          {/* Legal Links */}
+          <div>
+            <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Legal</h4>
+            <div className="flex flex-wrap gap-4">
+              {footerLinks.legal.map((link) => (
+                <Link 
+                  key={link.name}
+                  to={link.path}
+                  className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Desktop Layout - All sections */}
@@ -159,6 +179,23 @@ const Footer = () => {
                          <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.path}
+                    className="text-gray-300 hover:text-primary-white transition-colors duration-300 text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-lg font-heading font-semibold mb-6 text-primary-white">Legal</h4>
+            <ul className="space-y-3">
+              {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.path}
