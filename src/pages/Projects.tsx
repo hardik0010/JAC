@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, Component, ErrorInfo, ReactNode } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useApi } from '../hooks/useApi'
 import { 
   Building2, 
@@ -81,6 +81,7 @@ interface PaginationInfo {
 }
 
 const Projects = () => {
+  const navigate = useNavigate()
   const [activeFilter, setActiveFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const [searchQuery, setSearchQuery] = useState('')
@@ -88,6 +89,11 @@ const Projects = () => {
   const [showFilters, setShowFilters] = useState(false)
   const [expandedDescriptions, setExpandedDescriptions] = useState<Set<string>>(new Set())
   const filterRef = useRef<HTMLDivElement>(null)
+  
+  // Handle card click to navigate to contact page
+  const handleCardClick = useCallback(() => {
+    navigate('/contact')
+  }, [navigate])
   
   const {
     data: projectsData,
@@ -392,15 +398,15 @@ const Projects = () => {
                 return null
               }
               return (
-              <Link to="/contact" className="block">
-                <motion.div
-                  key={project._id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white border border-gray-200 shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
-                >
+              <motion.div
+                key={project._id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-gray-200 shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                onClick={handleCardClick}
+              >
                 <div className="relative h-64 overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <ProjectImageCarousel images={project.images} />
@@ -496,8 +502,7 @@ const Projects = () => {
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </div>
-                </motion.div>
-              </Link>
+              </motion.div>
               )
             }) : (
               <div className="col-span-full text-center py-12">
