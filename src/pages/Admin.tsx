@@ -849,41 +849,91 @@ const Admin = () => {
   };
 
   // Image optimization utility to reduce file size before upload
-  const optimizeImage = (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
-    return new Promise((resolve) => {
+  const optimizeImage = async (file: File, maxWidth: number = 800, quality: number = 0.8): Promise<File> => {
+    // Check if it's a HEIC/HEIF file
+    const isHeic = file.type === 'image/heic' || 
+                   file.type === 'image/heif' || 
+                   file.name.toLowerCase().endsWith('.heic') || 
+                   file.name.toLowerCase().endsWith('.heif');
+
+    if (isHeic) {
+      try {
+        console.log('Converting HEIC file:', file.name);
+        
+        // Add timeout to prevent hanging
+        const conversionPromise = (async () => {
+          const heic2any = (await import('heic2any')).default;
+          const convertedBlob = await heic2any({
+            blob: file,
+            toType: 'image/jpeg',
+            quality: quality
+          }) as Blob;
+          
+          // Create a new File object with JPEG type
+          const convertedFile = new File([convertedBlob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), {
+            type: 'image/jpeg',
+            lastModified: file.lastModified
+          });
+          
+          console.log('HEIC file converted to JPEG:', convertedFile.name);
+          return convertedFile;
+        })();
+        
+        // Add 30-second timeout
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('HEIC conversion timed out after 30 seconds')), 30000);
+        });
+        
+        return await Promise.race([conversionPromise, timeoutPromise]) as File;
+      } catch (error) {
+        console.error('HEIC conversion failed:', error);
+        throw new Error(`Failed to convert HEIC image: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      }
+    }
+
+    // For regular images, use canvas optimization
+    return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const img = new Image();
       
       img.onload = () => {
-        // Calculate new dimensions maintaining aspect ratio
-        let { width, height } = img;
-        if (width > maxWidth) {
-          height = (height * maxWidth) / width;
-          width = maxWidth;
+        try {
+          // Calculate new dimensions maintaining aspect ratio
+          let { width, height } = img;
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          // Draw and compress image
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const optimizedFile = new File([blob], file.name, {
+                  type: 'image/jpeg',
+                  lastModified: Date.now(),
+                });
+                resolve(optimizedFile);
+              } else {
+                resolve(file); // Fallback to original if optimization fails
+              }
+            },
+            'image/jpeg',
+            quality
+          );
+        } catch (error) {
+          reject(error);
         }
-        
-        canvas.width = width;
-        canvas.height = height;
-        
-        // Draw and compress image
-        ctx?.drawImage(img, 0, 0, width, height);
-        
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              const optimizedFile = new File([blob], file.name, {
-                type: 'image/jpeg',
-                lastModified: Date.now(),
-              });
-              resolve(optimizedFile);
-            } else {
-              resolve(file); // Fallback to original if optimization fails
-            }
-          },
-          'image/jpeg',
-          quality
-        );
+      };
+      
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
       };
       
       img.src = URL.createObjectURL(file);
@@ -894,13 +944,17 @@ const Admin = () => {
   const handleMainImageUpload = async (file: File) => {
     setIsUploadingImage(true);
     try {
+      console.log('Starting image optimization for:', file.name);
       const optimizedFile = await optimizeImage(file);
+      console.log('Image optimization completed:', optimizedFile.name);
       setProjectForm(prev => ({
         ...prev,
         mainImage: optimizedFile
       }));
     } catch (error) {
       console.error('Image optimization failed:', error);
+      // Show user-friendly error message
+      alert(`Image processing failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setProjectForm(prev => ({
         ...prev,
         mainImage: file
@@ -917,22 +971,33 @@ const Admin = () => {
       const fileArray = Array.from(files);
       const optimizedFiles: File[] = [];
       
+      console.log(`Starting optimization for ${fileArray.length} images`);
+      
       // Optimize images before adding to form
-      for (const file of fileArray) {
+      for (let i = 0; i < fileArray.length; i++) {
+        const file = fileArray[i];
         try {
+          console.log(`Processing image ${i + 1}/${fileArray.length}:`, file.name);
           const optimizedFile = await optimizeImage(file);
           optimizedFiles.push(optimizedFile);
+          console.log(`Image ${i + 1} optimization completed`);
         } catch (error) {
-          console.error('Image optimization failed:', error);
+          console.error(`Image ${i + 1} optimization failed:`, error);
+          // Show user-friendly error message for this specific image
+          alert(`Failed to process image "${file.name}": ${error instanceof Error ? error.message : 'Unknown error'}`);
           optimizedFiles.push(file); // Use original if optimization fails
         }
       }
       
+      console.log(`All images processed. Adding ${optimizedFiles.length} images to form`);
       setProjectForm(prev => ({
         ...prev,
         images: [...prev.images, ...optimizedFiles],
         imageCaptions: [...prev.imageCaptions, ...optimizedFiles.map(() => '')]
       }));
+    } catch (error) {
+      console.error('Image upload process failed:', error);
+      alert(`Image upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setIsUploadingImage(false);
     }
