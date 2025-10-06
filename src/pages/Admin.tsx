@@ -397,6 +397,7 @@ const Admin = () => {
     e.preventDefault();
     
     setIsSubmitting(true);
+    console.log('Starting project submission...');
     
     try {
       const formData = new FormData();
@@ -412,15 +413,20 @@ const Admin = () => {
         formData.append('mapLink', projectForm.mapLink);
       }
       
-      // Add main image
+      // Add main image with size logging
       if (projectForm.mainImage) {
+        console.log('Adding main image:', projectForm.mainImage.name, 'Size:', (projectForm.mainImage.size / 1024 / 1024).toFixed(2), 'MB');
         formData.append('mainImage', projectForm.mainImage);
       }
       
-      // Add additional images
-      projectForm.images.forEach((image, index) => {
-        formData.append('images', image);
-      });
+      // Add additional images with size logging
+      if (projectForm.images.length > 0) {
+        console.log(`Adding ${projectForm.images.length} additional images`);
+        projectForm.images.forEach((image, index) => {
+          console.log(`Image ${index + 1}:`, image.name, 'Size:', (image.size / 1024 / 1024).toFixed(2), 'MB');
+          formData.append('images', image);
+        });
+      }
       
       // Add image captions
       if (projectForm.imageCaptions.length > 0) {
@@ -443,6 +449,9 @@ const Admin = () => {
       
       const method = editingProject ? 'PUT' : 'POST';
       
+      console.log(`Submitting to ${method} ${url}`);
+      console.log('Form data prepared, starting upload...');
+      
       const response = await fetch(url, {
         method,
         headers: {
@@ -451,7 +460,10 @@ const Admin = () => {
         body: formData
       });
 
+      console.log('Upload completed, processing response...');
+
       if (response.ok) {
+        console.log('Project saved successfully!');
         setShowProjectForm(false);
         setEditingProject(null);
         setProjectForm({
@@ -469,10 +481,11 @@ const Admin = () => {
           existingImages: [],
           imagesToDelete: []
         });
-        fetchDashboardData();
+        await fetchDashboardData();
         alert(editingProject ? 'Project updated successfully!' : 'Project created successfully!');
       } else {
         const errorData = await response.json();
+        console.error('Server error:', errorData);
         alert(`Error: ${errorData.message}`);
       }
     } catch (error) {
@@ -480,6 +493,7 @@ const Admin = () => {
       alert('Failed to save project. Please try again.');
     } finally {
       setIsSubmitting(false);
+      console.log('Project submission process completed');
     }
   };
 
@@ -866,7 +880,7 @@ const Admin = () => {
           const convertedBlob = await heic2any({
             blob: file,
             toType: 'image/jpeg',
-            quality: quality
+            quality: 0.7 // Reduce quality to decrease file size
           }) as Blob;
           
           // Create a new File object with JPEG type
@@ -875,7 +889,7 @@ const Admin = () => {
             lastModified: file.lastModified
           });
           
-          console.log('HEIC file converted to JPEG:', convertedFile.name);
+          console.log('HEIC file converted to JPEG:', convertedFile.name, 'Size:', (convertedFile.size / 1024 / 1024).toFixed(2), 'MB');
           return convertedFile;
         })();
         
@@ -2215,7 +2229,7 @@ const Admin = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        {editingProject ? 'Updating...' : 'Creating...'}
+                        {editingProject ? 'Uploading & Updating...' : 'Uploading & Creating...'}
                       </>
                     ) : (
                       editingProject ? 'Update' : 'Create'

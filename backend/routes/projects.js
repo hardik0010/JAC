@@ -10,7 +10,7 @@ cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-  timeout: 60000, // 60 seconds timeout
+  timeout: 120000, // 120 seconds timeout for large files
   secure: true
 });
 
@@ -182,7 +182,7 @@ router.post('/', auth, uploadProjectImages, async (req, res) => {
                 { width: 800, height: 600, crop: 'fill' },
                 { quality: 'auto' }
               ],
-              timeout: 30000, // 30 seconds per image
+              timeout: 120000, // 120 seconds per image for large files
               resource_type: 'image'
             });
             break; // Success, exit retry loop
@@ -244,7 +244,7 @@ router.post('/', auth, uploadProjectImages, async (req, res) => {
                   { width: 800, height: 600, crop: 'fill' },
                   { quality: 'auto' }
                 ],
-                timeout: 30000, // 30 seconds per image
+                timeout: 120000, // 120 seconds per image for large files
                 resource_type: 'image'
               });
               break; // Success, exit retry loop
@@ -406,7 +406,7 @@ router.put('/:id', auth, uploadProjectImages, async (req, res) => {
                 { width: 800, height: 600, crop: 'fill' },
                 { quality: 'auto' }
               ],
-              timeout: 30000, // 30 seconds per image
+              timeout: 120000, // 120 seconds per image for large files
               resource_type: 'image'
             });
             break; // Success, exit retry loop
@@ -470,7 +470,7 @@ router.put('/:id', auth, uploadProjectImages, async (req, res) => {
                   { width: 800, height: 600, crop: 'fill' },
                   { quality: 'auto' }
                 ],
-                timeout: 30000, // 30 seconds per image
+                timeout: 120000, // 120 seconds per image for large files
                 resource_type: 'image'
               });
               break; // Success, exit retry loop
