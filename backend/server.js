@@ -89,7 +89,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000', 
     'http://localhost:3001', 
-    'https://jay-ambe-construction.vercel.app',
+    'https://www.jayambeconstruction.com/',
+    'https://jayambeconstruction.com/',
     process.env.FRONTEND_URL || 'http://localhost:3000'
   ],
   credentials: true,
