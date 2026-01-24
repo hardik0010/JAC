@@ -12,7 +12,7 @@ const About = () => {
   const founder = {
     name: 'Mr. Himanshu Prajapati',
     position: 'Founder & Managing Director',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    image: '/images/JAC.jpeg',
     experience: '30+ years',
     description: 'With over 30 years of experience in construction and more than 15 years leading Jay Ambe Construction, Mr. Himanshu Prajapati has built a strong foundation rooted in quality, integrity, and client trust. His hands-on leadership continues to drive the company\'s growth and excellence in every project.',
     achievements: [
